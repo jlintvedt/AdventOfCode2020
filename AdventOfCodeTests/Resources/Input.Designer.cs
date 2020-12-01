@@ -86,5 +86,14 @@ namespace AdventOfCodeTests.Resources {
                 return ResourceManager.GetString("D00_Puzzle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day00_Puzzle.
+        /// </summary>
+        public static string D01_Puzzle {
+            get {
+                return ResourceManager.GetString("D01_Puzzle", resourceCulture);
+            }
+        }
     }
 }

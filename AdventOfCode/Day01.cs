@@ -4,9 +4,9 @@ namespace AdventOfCode
 {
     /// <summary>
     /// Template class
-    /// https://adventofcode.com/2020/day/00
+    /// https://adventofcode.com/2020/day/1
     /// </summary>
-    public class Day00
+    public class Day01
     {
         // == == == == == Puzzle 1 == == == == ==
         public static string Puzzle1(string input)
