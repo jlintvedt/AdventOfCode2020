@@ -23,6 +23,7 @@ namespace AdventOfCodeTests
         public void Puzzle0_WarmUp()
         {
             // Force performing LoadInput() warm-up as part of this test
+            new AdventOfCode.Day01.ExpenseReport(new int[] { 1, 2, 3 });
         }
 
         [TestMethod]
@@ -52,17 +53,17 @@ namespace AdventOfCodeTests
             var result = AdventOfCode.Day01.Puzzle2(input_puzzle);
 
             // Assert
-            Assert.AreEqual($"{input_puzzle}_Puzzle2", result);
+            Assert.AreEqual("176647680", result);
         }
 
         [TestMethod]
         public void Puzzle2_Example()
         {
             // Act
-            var result = AdventOfCode.Day01.Puzzle2(input_example2);
+            var result = AdventOfCode.Day01.Puzzle2(input_example1);
 
             // Assert
-            Assert.AreEqual($"{input_example2}_Puzzle2", result);
+            Assert.AreEqual("241861950", result);
         }
     }
 }

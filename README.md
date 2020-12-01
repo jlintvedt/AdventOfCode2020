@@ -3,8 +3,8 @@
 ## Runtimes
 |                                |         || Test @3.8GHz<sup>1</sup> | Benchmark<sup>2</sup> |
 |--------------------------------|---------||-------------------------:|----------------------:|
-| [Day01](AdventOfCode/Day01.cs) | Puzzle1 ||                          |                       |
-|                                | Puzzle2 ||                          |                       |
+| [Day01](AdventOfCode/Day01.cs) | Puzzle1 ||                      1ms |                       |
+|                                | Puzzle2 ||                     <1ms |                       |
 
 
 
