@@ -11,23 +11,24 @@ namespace AdventOfCode
     {
         public class ExpenseReport
         {
-            private readonly SortedList<int, int> entries;
+            private readonly List<int> entries;
 
             public ExpenseReport(int[] ent)
             {
-                entries = new SortedList<int, int>();
+                entries = new List<int>();
                 foreach (var e in ent)
                 {
-                    entries.Add(e, e);
+                    entries.Add(e);
                 }
+                entries.Sort();
             }
 
             public int FindProductOfSumTwoNumbers(int sumTotal)
             {
-                foreach (var (a, _) in entries)
+                foreach (var a in entries)
                 {
                     var remainder = sumTotal - a;
-                    if (entries.ContainsKey(remainder))
+                    if (entries.Contains(remainder))
                     {
                         return remainder * a;
                     }
@@ -37,18 +38,17 @@ namespace AdventOfCode
 
             public int FindProductOfSumThreeNumbers(int sumTotal)
             {
-                foreach (var (a, _) in entries)
+                foreach (var a in entries)
                 {
                     var r1 = sumTotal - a;
-                    foreach (var (b, _) in entries)
+                    foreach (var b in entries)
                     {
                         var r2 = r1 - b;
-                        if (entries.ContainsKey(r2))
+                        if (entries.Contains(r2))
                         {
                             return a * b * r2;
                         }
                     }
-                    
                 }
                 throw new Exception($"Could not find 3 values that summed to {sumTotal}");
             }

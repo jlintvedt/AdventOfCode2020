@@ -1,10 +1,10 @@
 # AdventOfCode2020
 
 ## Runtimes
-|                                |         || Test @3.8GHz<sup>1</sup> | Benchmark<sup>2</sup> |
-|--------------------------------|---------||-------------------------:|----------------------:|
-| [Day01](AdventOfCode/Day01.cs) | Puzzle1 ||                      1ms |                  20µs |
-|                                | Puzzle2 ||                     <1ms |                  28µs |
+|                                |         | Test @3.8GHz<sup>1</sup> | Benchmark<sup>2</sup> |
+|--------------------------------|---------|-------------------------:|----------------------:|
+| [Day01](AdventOfCode/Day01.cs) | Puzzle1 |                     <1ms |                  12µs |
+|                                | Puzzle2 |                     <1ms |                  26µs |
 
 
 
