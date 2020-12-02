@@ -5,8 +5,8 @@
 |--------------------------------|---------|-------------------------:|----------------------:|
 | [Day01](AdventOfCode/Day01.cs) | Puzzle1 |                     <1ms |                  12µs |
 |                                | Puzzle2 |                     <1ms |                  26µs |
-| [Day02](AdventOfCode/Day02.cs) | Puzzle1 |                     <1ms |                 551µs |
-|                                | Puzzle2 |                     <1ms |                 364µs |
+| [Day02](AdventOfCode/Day02.cs) | Puzzle1 |                     <1ms |                 387µs |
+|                                | Puzzle2 |                     <1ms |                 234µs |
 
 
 
