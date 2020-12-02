@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace AdventOfCodeTests
 {
@@ -14,7 +15,7 @@ namespace AdventOfCodeTests
         {
             string day = "02";
             input_puzzle = Resources.Input.ResourceManager.GetObject($"D{day}_Puzzle").ToString();
-            input_example1 = "Example1";
+            input_example1 = string.Format("1-3 a: abcde{0}1-3 b: cdefg{0}2-9 c: ccccccccc", Environment.NewLine);
             input_example2 = "Example2";
         }
 
@@ -31,7 +32,7 @@ namespace AdventOfCodeTests
             var result = AdventOfCode.Day02.Puzzle1(input_puzzle);
 
             // Assert
-            Assert.AreEqual($"{input_puzzle}_Puzzle1", result);
+            Assert.AreEqual("625", result);
         }
 
         [TestMethod]
@@ -41,7 +42,7 @@ namespace AdventOfCodeTests
             var result = AdventOfCode.Day02.Puzzle1(input_example1);
 
             // Assert
-            Assert.AreEqual($"{input_example1}_Puzzle1", result);
+            Assert.AreEqual("2", result);
         }
 
         [TestMethod]
@@ -62,6 +63,14 @@ namespace AdventOfCodeTests
 
             // Assert
             Assert.AreEqual($"{input_example2}_Puzzle2", result);
+        }
+
+        // Password Database
+        [TestMethod]
+        public void Password_IsValid()
+        {
+            // Act & Assert
+            Assert.IsTrue((new AdventOfCode.Day02.PasswordDatabase.Password("6-10 j: jjjjjjjjjj")).IsValid);
         }
     }
 }
