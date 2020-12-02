@@ -36,27 +36,67 @@ namespace AdventOfCode
                 return count;
             }
 
+            public int CountValidTobogganPasswords()
+            {
+                int count = 0;
+                foreach (var pw in Passwords)
+                {
+                    if (pw.IsValidToboggan)
+                    {
+                        count++;
+                    }
+                }
+
+                return count;
+            }
             public class Password
             {
-                public bool IsValid;
                 public string String;
+                private string policy;
 
                 public Password(string input)
                 {
                     // Extract password string
                     var parts = input.Split(":");
+                    policy = parts[0];
                     String = parts[1].Trim();
-                    // Extract Policy
-                    parts = parts[0].Split(" ");
-                    char policyChar = parts[1].ToCharArray()[0];
+                }
 
-                    parts = parts[0].Split("-");
-                    var policyMin = Int32.Parse(parts[0]);
-                    var policyMax = Int32.Parse(parts[1]);
+                public bool IsValid
+                {
+                    get
+                    {
+                        // Parse Policy
+                        var parts = policy.Split(" ");
+                        char policyChar = parts[1].ToCharArray()[0];
 
-                    // Validate password
-                    int count = String.Split(policyChar).Length - 1;
-                    IsValid = policyMin <= count && count <= policyMax ? true : false;
+                        parts = parts[0].Split("-");
+                        var policyMin = Int32.Parse(parts[0]);
+                        var policyMax = Int32.Parse(parts[1]);
+
+                        // Validate password
+                        int count = String.Split(policyChar).Length - 1;
+                        return policyMin <= count && count <= policyMax ? true : false;
+                    }
+                }
+
+                public bool IsValidToboggan
+                {
+                    get
+                    {
+                        // Parse Policy
+                        var parts = policy.Split(" ");
+                        char policyChar = parts[1].ToCharArray()[0];
+
+                        parts = parts[0].Split("-");
+                        var indexOne = Int32.Parse(parts[0])-1;
+                        var indexTwo = Int32.Parse(parts[1])-1;
+
+                        // Validate password
+                        var matchOne = String[indexOne] == policyChar;
+                        var matchTwo = String[indexTwo] == policyChar;
+                        return matchOne ^ matchTwo;
+                    }
                 }
             }
         }
@@ -72,7 +112,9 @@ namespace AdventOfCode
         // == == == == == Puzzle 2 == == == == ==
         public static string Puzzle2(string input)
         {
-            return input + "_Puzzle2";
+            var passwordAndPolicies = input.Split(Environment.NewLine);
+            var pd = new PasswordDatabase(passwordAndPolicies);
+            return pd.CountValidTobogganPasswords().ToString();
         }
     }
 }
