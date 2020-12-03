@@ -34,9 +34,10 @@ namespace AdventOfCode
                 return;
             }
 
-            public int TreesHitOnRide(int xMove, int yMove)
+            public long TreesHitOnRide(int xMove, int yMove)
             {
-                int x = 0, y = 0, treesHit = 0;
+                int x = 0, y = 0;
+                long treesHit = 0;
 
                 while (y < SlopeHeight)
                 {
