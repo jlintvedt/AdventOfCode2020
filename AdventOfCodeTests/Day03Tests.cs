@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace AdventOfCodeTests
 {
@@ -7,15 +8,13 @@ namespace AdventOfCodeTests
     {
         private string input_puzzle;
         private string input_example1;
-        private string input_example2;
 
         [TestInitialize]
         public void LoadInput()
         {
             string day = "03";
             input_puzzle = Resources.Input.ResourceManager.GetObject($"D{day}_Puzzle").ToString();
-            input_example1 = "Example1";
-            input_example2 = "Example2";
+            input_example1 = string.Format("..##.......{0}#...#...#..{0}.#....#..#.{0}..#.#...#.#{0}.#...##..#.{0}..#.##.....{0}.#.#.#....#{0}.#........#{0}#.##...#...{0}#...##....#{0}.#..#...#.#", Environment.NewLine);
         }
 
         [TestMethod]
@@ -31,7 +30,7 @@ namespace AdventOfCodeTests
             var result = AdventOfCode.Day03.Puzzle1(input_puzzle);
 
             // Assert
-            Assert.AreEqual($"{input_puzzle}_Puzzle1", result);
+            Assert.AreEqual("191", result);
         }
 
         [TestMethod]
@@ -41,7 +40,7 @@ namespace AdventOfCodeTests
             var result = AdventOfCode.Day03.Puzzle1(input_example1);
 
             // Assert
-            Assert.AreEqual($"{input_example1}_Puzzle1", result);
+            Assert.AreEqual("7", result);
         }
 
         [TestMethod]
@@ -58,10 +57,10 @@ namespace AdventOfCodeTests
         public void Puzzle2_Example()
         {
             // Act
-            var result = AdventOfCode.Day03.Puzzle2(input_example2);
+            var result = AdventOfCode.Day03.Puzzle2(input_example1);
 
             // Assert
-            Assert.AreEqual($"{input_example2}_Puzzle2", result);
+            Assert.AreEqual($"{input_example1}_Puzzle2", result);
         }
     }
 }
