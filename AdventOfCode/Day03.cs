@@ -64,7 +64,15 @@ namespace AdventOfCode
         // == == == == == Puzzle 2 == == == == ==
         public static string Puzzle2(string input)
         {
-            return input + "_Puzzle2";
+            var ts = new TobogganSlope(input);
+
+            var treesHit = ts.TreesHitOnRide(1, 1);
+            treesHit *= ts.TreesHitOnRide(3, 1);
+            treesHit *= ts.TreesHitOnRide(5, 1);
+            treesHit *= ts.TreesHitOnRide(7, 1);
+            treesHit *= ts.TreesHitOnRide(1, 2);
+
+            return treesHit.ToString();
         }
     }
 }

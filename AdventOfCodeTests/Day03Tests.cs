@@ -50,7 +50,7 @@ namespace AdventOfCodeTests
             var result = AdventOfCode.Day03.Puzzle2(input_puzzle);
 
             // Assert
-            Assert.AreEqual($"{input_puzzle}_Puzzle2", result);
+            Assert.AreEqual("1478615040", result);
         }
 
         [TestMethod]
@@ -60,7 +60,7 @@ namespace AdventOfCodeTests
             var result = AdventOfCode.Day03.Puzzle2(input_example1);
 
             // Assert
-            Assert.AreEqual($"{input_example1}_Puzzle2", result);
+            Assert.AreEqual("336", result);
         }
     }
 }
