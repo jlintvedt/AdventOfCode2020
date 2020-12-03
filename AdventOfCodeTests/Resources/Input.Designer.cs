@@ -183,11 +183,42 @@ namespace AdventOfCodeTests.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Day00_Puzzle.
+        ///   Looks up a localized string similar to 14-15 v: vdvvvvvsvvvvvfpv
+        ///3-11 k: kkqkkfkkvkgfknkx
+        ///6-10 j: jjjjjjjjjj
+        ///5-10 s: nskdmzwrmpmhsrzts
+        ///13-15 v: vvvvvvkvvvvjzvv
+        ///11-13 h: hhhhhbhhhhdhhh
+        ///14-15 r: rrrrrrrrzrrrrrtl
+        ///2-9 c: llhctjgbz
+        ///13-15 s: ssssxssssssssjs
+        ///6-8 c: lccccqcc
+        ///8-9 n: nnnnnmnch
+        ///4-5 n: jnnnmmpxngbrknzb
+        ///4-7 n: knlnqnnndnn
+        ///13-18 g: ggggggggnggggggggggp
+        ///5-6 m: mmmmgm
+        ///5-10 l: lvlllglllpll
+        ///7-12 z: pszgzqzzzzkw
+        ///1-2 j: pjjqw
+        ///15-16 n: nnnnnnnnnnnnnnpn
+        ///8-14 z: mzzzjzzzzhzzzztznzz
+        ///5-19 q: rnsdfgkqlqjdvrmtsqqh
+        ///1-5 f: ffffff
+        ///4-5 h [rest of string was truncated]&quot;;.
         /// </summary>
         public static string D02_Puzzle {
             get {
                 return ResourceManager.GetString("D02_Puzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day03_Puzzle.
+        /// </summary>
+        public static string D03_Puzzle {
+            get {
+                return ResourceManager.GetString("D03_Puzzle", resourceCulture);
             }
         }
     }
