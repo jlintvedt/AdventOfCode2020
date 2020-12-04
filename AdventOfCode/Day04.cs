@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading;
 
 namespace AdventOfCode
 {
@@ -108,6 +105,7 @@ namespace AdventOfCode
 
             public bool IsValidStrict()
             {
+                // Check that no fields are null
                 if (!IsValidSimple())
                 {
                     return false;

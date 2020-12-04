@@ -24,8 +24,8 @@ namespace AdventOfCodeTests
         [TestMethod]
         public void Puzzle0_WarmUp()
         {
-            var ps = new AdventOfCode.Day04.PassportScanner(input_example1);
             // Force performing LoadInput() warm-up as part of this test
+            var ps = new AdventOfCode.Day04.PassportScanner(input_example1);
         }
 
         [TestMethod]
