@@ -147,5 +147,29 @@ namespace AdventOfCode.Common
             }
             return sb.ToString();
         }
+
+        // == == == == == Validation == == == == ==
+        public static bool StringIsIntInRange(string input, int min, int max)
+        {
+            if (input == null)
+            {
+                return false;
+            }
+
+            try
+            {
+                int value = Int32.Parse(input);
+                if (min > value || value > max)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
     }
 }

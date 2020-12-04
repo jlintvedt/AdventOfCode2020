@@ -13,7 +13,7 @@ namespace AdventOfCode
     {
         public class PassportScanner
         {
-            private List<Passport> Passports;
+            private readonly List<Passport> Passports;
 
             public PassportScanner(string rawInput)
             {
@@ -27,12 +27,12 @@ namespace AdventOfCode
                 }
             }
 
-            public int NumValidPassports()
+            public int NumValidPassports(bool strict = false)
             {
                 var valid = 0;
                 foreach (var pass in Passports)
                 {
-                    if (pass.IsValid(optionalCid:true))
+                    if ((!strict && pass.IsValidSimple()) || strict && pass.IsValidStrict())
                     {
                         valid++;
                     }
@@ -44,14 +44,14 @@ namespace AdventOfCode
 
         public class Passport
         {
-            public string BirthYear;
-            public string IssueYear;
-            public string ExpirationYear;
-            public string Height;
-            public string HairColor;
-            public string EyeColor;
-            public string PassportId;
-            public string CountryId;
+            public readonly string BirthYear;
+            public readonly string IssueYear;
+            public readonly string ExpirationYear;
+            public readonly string Height;
+            public readonly string HairColor;
+            public readonly string EyeColor;
+            public readonly string PassportId;
+            public readonly string CountryId;
 
             public Passport(string[] fields)
             {
@@ -90,7 +90,7 @@ namespace AdventOfCode
                 }
             }
 
-            public bool IsValid(bool optionalCid = false)
+            public bool IsValidSimple()
             {
                 if (BirthYear == null 
                     || IssueYear == null 
@@ -98,8 +98,68 @@ namespace AdventOfCode
                     || Height == null 
                     || HairColor == null 
                     || EyeColor == null 
-                    || PassportId == null 
-                    || (!optionalCid && CountryId == null))
+                    || PassportId == null )
+                {
+                    return false;
+                }
+
+                return true;
+            }
+
+            public bool IsValidStrict()
+            {
+                if (!IsValidSimple())
+                {
+                    return false;
+                }
+
+                // Years
+                if (!Common.Common.StringIsIntInRange(BirthYear, 1920, 2002))
+                {
+                    return false;
+                }
+                if (!Common.Common.StringIsIntInRange(IssueYear, 2010, 2020))
+                {
+                    return false;
+                }
+                if (!Common.Common.StringIsIntInRange(ExpirationYear, 2020, 2030))
+                {
+                    return false;
+                }
+                // Height
+                var ending = Height.Substring(Height.Length - 2);
+                if (ending == "cm")
+                {
+                    if (!Common.Common.StringIsIntInRange(Height.Substring(0, Height.Length - 2), 150, 193))
+                    {
+                        return false;
+                    }
+                }
+                else if (ending == "in")
+                {
+                    if (!Common.Common.StringIsIntInRange(Height.Substring(0, Height.Length - 2), 59, 76))
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+                // Hair Color
+                if (HairColor.Length != 7 
+                    || HairColor[0] != '#'
+                    || !Int32.TryParse(HairColor.Substring(1), System.Globalization.NumberStyles.HexNumber, null, out _))
+                {
+                    return false;
+                }
+                // Eye Color 
+                if (!new HashSet<string>() { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" }.Contains(EyeColor))
+                {
+                    return false;
+                }
+                // Passport ID
+                if (PassportId.Length != 9 || !Int32.TryParse(PassportId, out _))
                 {
                     return false;
                 }
@@ -119,7 +179,9 @@ namespace AdventOfCode
         // == == == == == Puzzle 2 == == == == ==
         public static string Puzzle2(string input)
         {
-            return input + "_Puzzle2";
+            var ps = new PassportScanner(input);
+            var valid = ps.NumValidPassports(strict:true);
+            return valid.ToString();
         }
     }
 }

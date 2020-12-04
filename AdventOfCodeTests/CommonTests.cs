@@ -203,5 +203,35 @@ namespace AdventOfCodeTests
             Assert.AreEqual("1234", Common.TwoDimIntArrayToString(twoByTwo));
             Assert.AreEqual("12345", Common.TwoDimIntArrayToString(oneColumn));
         }
+
+        [TestMethod]
+        public void StringIsIntInRange()
+        {
+            //Arrange
+            var min = 150;
+            var max = 190;
+            var invalid = new string[] { null, "notInt" };
+            var toSmall = new string[] { "1", "149" };
+            var inRange = new string[] { "150", "170", "190" };
+            var toLarge = new string[] { "191", "200" };
+
+            // Act & Assert
+            foreach (var val in invalid)
+            {
+                Assert.IsFalse(Common.StringIsIntInRange(val, min, max));
+            }
+            foreach (var val in toSmall)
+            {
+                Assert.IsFalse(Common.StringIsIntInRange(val, min, max));
+            }
+            foreach (var val in inRange)
+            {
+                Assert.IsTrue(Common.StringIsIntInRange(val, min, max));
+            }
+            foreach (var val in toLarge)
+            {
+                Assert.IsFalse(Common.StringIsIntInRange(val, min, max));
+            }
+        }
     }
 }
