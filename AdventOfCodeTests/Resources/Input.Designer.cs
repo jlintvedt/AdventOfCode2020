@@ -238,11 +238,44 @@ namespace AdventOfCodeTests.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Day00_Puzzle.
+        ///   Looks up a localized string similar to iyr:2015
+        ///hgt:59cm byr:2029 cid:219 pid:9381688753 eyr:1992 hcl:#b6652a
+        ///ecl:#7a0fa6
+        ///
+        ///ecl:blu iyr:2018 pid:943614755 cid:335
+        ///byr:1968
+        ///eyr:2026
+        ///
+        ///pid:067285985 hcl:#ceb3a1 cid:281
+        ///ecl:#07219a eyr:1944
+        ///iyr:2025
+        ///byr:2029 hgt:64cm
+        ///
+        ///hgt:185cm
+        ///ecl:gry cid:222
+        ///iyr:2016
+        ///hcl:#866857 byr:1970 pid:269105457 eyr:2026
+        ///
+        ///pid:260043570 hcl:#b6652a cid:275 byr:1990 ecl:brn
+        ///hgt:163cm iyr:2012
+        ///
+        ///hgt:181cm pid:604983466
+        ///iyr:1930 eyr:2039 byr:1950 ecl:#906548 hcl:#b6652a
+        ///
+        ///iyr:2025 eyr:1956 hcl:z pid:#1c42cc  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string D04_Puzzle {
             get {
                 return ResourceManager.GetString("D04_Puzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day05_Puzzle.
+        /// </summary>
+        public static string D05_Puzzle {
+            get {
+                return ResourceManager.GetString("D05_Puzzle", resourceCulture);
             }
         }
     }
