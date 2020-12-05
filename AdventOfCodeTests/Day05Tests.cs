@@ -52,17 +52,7 @@ namespace AdventOfCodeTests
             var result = AdventOfCode.Day05.Puzzle2(input_puzzle);
 
             // Assert
-            Assert.AreEqual($"{input_puzzle}_Puzzle2", result);
-        }
-
-        [TestMethod]
-        public void Puzzle2_Example()
-        {
-            // Act
-            var result = AdventOfCode.Day05.Puzzle2(input_example2);
-
-            // Assert
-            Assert.AreEqual($"{input_example2}_Puzzle2", result);
+            Assert.AreEqual("522", result);
         }
 
         // BoardingPass
@@ -77,24 +67,24 @@ namespace AdventOfCodeTests
 
             // Act & assert
             var bp = new AdventOfCode.Day05.BoardingPass(seat1);
-            Assert.AreEqual(44, bp.row);
-            Assert.AreEqual(5, bp.column);
-            Assert.AreEqual(357, bp.seatId);
+            Assert.AreEqual(44, bp.Row);
+            Assert.AreEqual(5, bp.Column);
+            Assert.AreEqual(357, bp.SeatId);
 
             bp = new AdventOfCode.Day05.BoardingPass(seat2);
-            Assert.AreEqual(70, bp.row);
-            Assert.AreEqual(7, bp.column);
-            Assert.AreEqual(567, bp.seatId);
+            Assert.AreEqual(70, bp.Row);
+            Assert.AreEqual(7, bp.Column);
+            Assert.AreEqual(567, bp.SeatId);
 
             bp = new AdventOfCode.Day05.BoardingPass(seat3);
-            Assert.AreEqual(14, bp.row);
-            Assert.AreEqual(7, bp.column);
-            Assert.AreEqual(119, bp.seatId);
+            Assert.AreEqual(14, bp.Row);
+            Assert.AreEqual(7, bp.Column);
+            Assert.AreEqual(119, bp.SeatId);
 
             bp = new AdventOfCode.Day05.BoardingPass(seat4);
-            Assert.AreEqual(102, bp.row);
-            Assert.AreEqual(4, bp.column);
-            Assert.AreEqual(820, bp.seatId);
+            Assert.AreEqual(102, bp.Row);
+            Assert.AreEqual(4, bp.Column);
+            Assert.AreEqual(820, bp.SeatId);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AdventOfCode
 {
@@ -8,9 +9,38 @@ namespace AdventOfCode
     /// </summary>
     public class Day05
     {
+        public class BoardingControl
+        {
+            private List<int> SeatIds;
+
+            public BoardingControl(string[] rawPass)
+            {
+                SeatIds = new List<int>();
+                foreach (var seat in rawPass)
+                {
+                    SeatIds.Add(new BoardingPass(seat).SeatId);
+                }
+                SeatIds.Sort();
+            }
+
+            public int FindAvailableSeat()
+            {
+                var min = SeatIds[0];
+                var max = SeatIds[SeatIds.Count - 1];
+                for (int i = min; i < max; i++)
+                {
+                    if (SeatIds[i]+2 == SeatIds[i+1])
+                    {
+                        return SeatIds[i] + 1;
+                    }
+                }
+                throw new Exception("No available seat found");
+            }
+        }
+
         public class BoardingPass
         {
-            public int row, column, seatId;
+            public int Row, Column, SeatId;
 
             public BoardingPass(string bin)
             {
@@ -27,7 +57,7 @@ namespace AdventOfCode
                         min += (max - min + 1) / 2;
                     }
                 }
-                row = bin[6] == 'F' ? min : max;
+                Row = bin[6] == 'F' ? min : max;
                 
                 // Find column
                 min = 0; 
@@ -43,10 +73,10 @@ namespace AdventOfCode
                         min += (max - min + 1) / 2;
                     }
                 }
-                column = bin[9] == 'L' ? min : max;
+                Column = bin[9] == 'L' ? min : max;
 
                 // Calculate seatId;
-                seatId = row * 8 + column;
+                SeatId = Row * 8 + Column;
             }
         }
 
@@ -57,7 +87,7 @@ namespace AdventOfCode
             int maxId = 0;
             foreach (var seat in seats)
             {
-                var id = new BoardingPass(seat).seatId;
+                var id = new BoardingPass(seat).SeatId;
                 maxId = maxId > id ? maxId : id;
             }
             return maxId.ToString();
@@ -66,7 +96,8 @@ namespace AdventOfCode
         // == == == == == Puzzle 2 == == == == ==
         public static string Puzzle2(string input)
         {
-            return input + "_Puzzle2";
+            var bc = new BoardingControl(input.Split(Environment.NewLine));
+            return bc.FindAvailableSeat().ToString();
         }
     }
 }
