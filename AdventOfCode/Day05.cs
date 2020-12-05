@@ -11,7 +11,7 @@ namespace AdventOfCode
     {
         public class BoardingControl
         {
-            private List<int> SeatIds;
+            private readonly List<int> SeatIds;
 
             public BoardingControl(string[] rawPass)
             {
@@ -25,9 +25,7 @@ namespace AdventOfCode
 
             public int FindAvailableSeat()
             {
-                var min = SeatIds[0];
-                var max = SeatIds[SeatIds.Count - 1];
-                for (int i = min; i < max; i++)
+                for (int i = 0; i < SeatIds.Count-1; i++)
                 {
                     if (SeatIds[i]+2 == SeatIds[i+1])
                     {
