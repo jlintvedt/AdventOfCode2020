@@ -8,7 +8,6 @@ namespace AdventOfCodeTests
     {
         private string input_puzzle;
         private string input_example1;
-        private string input_example2;
 
         [TestInitialize]
         public void LoadInput()
@@ -16,13 +15,13 @@ namespace AdventOfCodeTests
             string day = "06";
             input_puzzle = Resources.Input.ResourceManager.GetObject($"D{day}_Puzzle").ToString();
             input_example1 = string.Format("abc{0}{0}a{0}b{0}c{0}{0}ab{0}ac{0}{0}a{0}a{0}a{0}a{0}{0}b", Environment.NewLine);
-            input_example2 = string.Format("example{0}2", Environment.NewLine);
         }
 
         [TestMethod]
         public void Puzzle0_WarmUp()
         {
             // Force performing LoadInput() warm-up as part of this test
+            var cdf = new AdventOfCode.Day06.CustomsDeclarationForm(new string[] { "a", "b", "c" });
         }
 
         [TestMethod]
@@ -52,17 +51,17 @@ namespace AdventOfCodeTests
             var result = AdventOfCode.Day06.Puzzle2(input_puzzle);
 
             // Assert
-            Assert.AreEqual($"{input_puzzle}_Puzzle2", result);
+            Assert.AreEqual("3493", result);
         }
 
         [TestMethod]
         public void Puzzle2_Example()
         {
             // Act
-            var result = AdventOfCode.Day06.Puzzle2(input_example2);
+            var result = AdventOfCode.Day06.Puzzle2(input_example1);
 
             // Assert
-            Assert.AreEqual($"{input_example2}_Puzzle2", result);
+            Assert.AreEqual("6", result);
         }
     }
 }

@@ -11,19 +11,42 @@ namespace AdventOfCode
     {
         public class CustomsDeclarationForm
         {
-            private readonly HashSet<char> answers;
+            private readonly Dictionary<char, int> answers;
+            private readonly int peopleInGroup = 0;
 
             public int NumYes => answers.Count;
 
+            public int NumEveryoneYes { 
+                get {
+                    var everyoneYes = 0;
+                    foreach (var yes in answers.Keys)
+                    {
+                        if (answers[yes] == peopleInGroup)
+                        {
+                            everyoneYes++;
+                        }
+                    }
+                    return everyoneYes;
+                } 
+            }
+
             public CustomsDeclarationForm(string[] inputForms)
             {
-                answers = new HashSet<char>();
+                answers = new Dictionary<char, int>();
 
                 foreach (var individual in inputForms)
                 {
+                    peopleInGroup++;
                     foreach (var answer in individual)
                     {
-                        answers.Add(answer);
+                        if (answers.ContainsKey(answer))
+                        {
+                            answers[answer]++;
+                        } 
+                        else
+                        {
+                            answers[answer] = 1;
+                        }
                     }
                 }
             }
@@ -44,7 +67,13 @@ namespace AdventOfCode
         // == == == == == Puzzle 2 == == == == ==
         public static string Puzzle2(string input)
         {
-            return input + "_Puzzle2";
+            var groups = input.Split(string.Format("{0}{0}", Environment.NewLine));
+            var yesSum = 0;
+            foreach (var group in groups)
+            {
+                yesSum += (new CustomsDeclarationForm(group.Split(Environment.NewLine))).NumEveryoneYes;
+            }
+            return yesSum.ToString();
         }
     }
 }
