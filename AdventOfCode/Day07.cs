@@ -33,7 +33,7 @@ namespace AdventOfCode
                         var name = c.Substring(2).Split(" bag")[0];
                         var cBag = GetOrCreateBag(name);
                         // Link parent and child bag
-                        bag.Contains.Add(cBag, num);
+                        bag.Contains.Add((cBag, num));
                         cBag.AppearIn.Add(bag);
                     }
                 }
@@ -43,41 +43,36 @@ namespace AdventOfCode
             {
                 var visited = new HashSet<string>();
                 var bag = Bags[name];
-                var numVisited = RecursiveVisitParents(bag, visited) - 1;
-
-                return numVisited;
+                RecursiveVisitParents(bag, visited);
+                return visited.Count;
             }
 
-            public int RecursiveVisitParents(BagType bag, HashSet<string> visited)
+            private void RecursiveVisitParents(BagType bag, HashSet<string> visited)
             {
-                var numVisited = 1;
                 foreach (var parent in bag.AppearIn)
                 {
-                    if (visited.Contains(parent.Name))
+                    if (!visited.Contains(parent.Name))
                     {
-                        continue;
+                        visited.Add(parent.Name);
+                        RecursiveVisitParents(parent, visited);
                     }
-                    numVisited += RecursiveVisitParents(parent, visited);
-                    visited.Add(parent.Name);
                 }
-                return numVisited;
             }
 
             public int CalculateContainerRequirement(string name)
             {
                 var bag = Bags[name];
-                var numBags = RecursiveVisitChildForCount(bag, null) -1;
-
+                var numBags = RecursiveVisitChildForCount(bag) -1;
                 return numBags;
             }
 
-            public int RecursiveVisitChildForCount(BagType bag, BagType parent)
+            private int RecursiveVisitChildForCount(BagType bag)
             {
                 var numBags = 1;
-                foreach (var child in bag.Contains.Keys)
+                foreach (var (child, count) in bag.Contains)
                 {
-                    var childContains = RecursiveVisitChildForCount(child, bag);
-                    numBags +=  bag.Contains[child] * childContains;
+                    var childContains = RecursiveVisitChildForCount(child);
+                    numBags +=  count * childContains;
                 }
                 return numBags;
             }
@@ -98,13 +93,13 @@ namespace AdventOfCode
         {
             public string Name;
             public List<BagType> AppearIn;
-            public Dictionary<BagType, int> Contains;
+            public List<(BagType, int)> Contains;
 
             public BagType(string name)
             {
                 Name = name;
                 AppearIn = new List<BagType>();
-                Contains = new Dictionary<BagType, int>();
+                Contains = new List<(BagType, int)>();
             }
         }
 
