@@ -322,11 +322,62 @@ namespace AdventOfCodeTests.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Day06_Puzzle.
+        ///   Looks up a localized string similar to kimczeyaqwbs
+        ///pwmsf
+        ///wgmfus
+        ///lofjwnms
+        ///rwsum
+        ///
+        ///hndgqzkvtyxoifsemrpjaul
+        ///brfzpmgesjihuvxqyontdaklw
+        ///fakydqpuriljosvhmxtezng
+        ///qerstgynxplkhmoiuvzdjaf
+        ///
+        ///pxygsaovwnuqthke
+        ///ygqnepvuxhswtao
+        ///
+        ///o
+        ///o
+        ///
+        ///uogzqatjwyihskpdlen
+        ///wkidlyahtzougjpnseq
+        ///ylputjwoaizqdekgnsh
+        ///
+        ///diejltaxoqgfsckymvpwzu
+        ///vtypfnsojcqilbuazg
+        ///
+        ///lkvqinopx
+        ///gptazfonbq
+        ///oqahpnz
+        ///qpowmnb
+        ///neqodhjp
+        ///
+        ///hzqgiaksvouycjpwet
+        ///izakeohctsuypgjvwq
+        ///eojhzasvqitygcpwuk
+        ///jkstuviacphgwezyoq
+        ///
+        ///voksmqfalh
+        ///fywojdbrvpax
+        ///cefovustagzn
+        ///
+        ///wdkcuiyegrl
+        ///zmnixqbeyw
+        ///
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         public static string D06_Puzzle {
             get {
                 return ResourceManager.GetString("D06_Puzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day07_Puzzle.
+        /// </summary>
+        public static string D07_Puzzle {
+            get {
+                return ResourceManager.GetString("D07_Puzzle", resourceCulture);
             }
         }
     }
