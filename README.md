@@ -15,6 +15,8 @@
 |                                | Puzzle2 |                     <1ms |                  64µs |
 | [Day06](AdventOfCode/Day06.cs) | Puzzle1 |                      1ms |                 623µs |
 |                                | Puzzle2 |                      1ms |                 766µs |
+| [Day07](AdventOfCode/Day07.cs) | Puzzle1 |                      1ms |                       |
+|                                | Puzzle2 |                      1ms |                       |
 
 
 

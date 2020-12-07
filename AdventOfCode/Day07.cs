@@ -43,7 +43,6 @@ namespace AdventOfCode
             {
                 var visited = new HashSet<string>();
                 var bag = Bags[name];
-
                 var numVisited = RecursiveVisitParents(bag, visited) - 1;
 
                 return numVisited;
@@ -62,6 +61,25 @@ namespace AdventOfCode
                     visited.Add(parent.Name);
                 }
                 return numVisited;
+            }
+
+            public int CalculateContainerRequirement(string name)
+            {
+                var bag = Bags[name];
+                var numBags = RecursiveVisitChildForCount(bag, null) -1;
+
+                return numBags;
+            }
+
+            public int RecursiveVisitChildForCount(BagType bag, BagType parent)
+            {
+                var numBags = 1;
+                foreach (var child in bag.Contains.Keys)
+                {
+                    var childContains = RecursiveVisitChildForCount(child, bag);
+                    numBags +=  bag.Contains[child] * childContains;
+                }
+                return numBags;
             }
 
             private BagType GetOrCreateBag(string name)
@@ -90,7 +108,6 @@ namespace AdventOfCode
             }
         }
 
-
         // == == == == == Puzzle 1 == == == == ==
         public static string Puzzle1(string input)
         {
@@ -101,7 +118,8 @@ namespace AdventOfCode
         // == == == == == Puzzle 2 == == == == ==
         public static string Puzzle2(string input)
         {
-            return input + "_Puzzle2";
+            var bp = new BaggageProcessing(input.Split(Environment.NewLine));
+            return bp.CalculateContainerRequirement("shiny gold").ToString();
         }
     }
 }
