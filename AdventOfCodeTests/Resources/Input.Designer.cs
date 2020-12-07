@@ -149,5 +149,32 @@ namespace AdventOfCodeTests.Resources {
                 return ResourceManager.GetString("D07_Puzzle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day08_Puzzle.
+        /// </summary>
+        public static string D08_Puzzle {
+            get {
+                return ResourceManager.GetString("D08_Puzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day09_Puzzle.
+        /// </summary>
+        public static string D09_Puzzle {
+            get {
+                return ResourceManager.GetString("D09_Puzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day10_Puzzle.
+        /// </summary>
+        public static string D10_Puzzle {
+            get {
+                return ResourceManager.GetString("D10_Puzzle", resourceCulture);
+            }
+        }
     }
 }
