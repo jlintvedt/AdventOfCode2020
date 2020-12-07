@@ -86,5 +86,68 @@ namespace AdventOfCodeTests.Resources {
                 return ResourceManager.GetString("D00_Puzzle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day01_Puzzle.
+        /// </summary>
+        public static string D01_Puzzle {
+            get {
+                return ResourceManager.GetString("D01_Puzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day02_Puzzle.
+        /// </summary>
+        public static string D02_Puzzle {
+            get {
+                return ResourceManager.GetString("D02_Puzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day03_Puzzle.
+        /// </summary>
+        public static string D03_Puzzle {
+            get {
+                return ResourceManager.GetString("D03_Puzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day04_Puzzle.
+        /// </summary>
+        public static string D04_Puzzle {
+            get {
+                return ResourceManager.GetString("D04_Puzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day05_Puzzle.
+        /// </summary>
+        public static string D05_Puzzle {
+            get {
+                return ResourceManager.GetString("D05_Puzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day06_Puzzle.
+        /// </summary>
+        public static string D06_Puzzle {
+            get {
+                return ResourceManager.GetString("D06_Puzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day07_Puzzle.
+        /// </summary>
+        public static string D07_Puzzle {
+            get {
+                return ResourceManager.GetString("D07_Puzzle", resourceCulture);
+            }
+        }
     }
 }
