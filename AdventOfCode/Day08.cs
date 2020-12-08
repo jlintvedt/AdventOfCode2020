@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Xml.Schema;
 
@@ -14,48 +15,126 @@ namespace AdventOfCode
     {
         public class GameConsole
         {
-            private List<string> instructions;
+            private List<Instruction> instructions;
             private HashSet<int> visitedInstructions;
             private int pointer = 0;
             private int accumulator = 0;
 
             public GameConsole(string rawInstructions)
             {
-                instructions = rawInstructions.Split(Environment.NewLine).ToList();
+                instructions = new List<Instruction>();
+                foreach (var raw in rawInstructions.Split(Environment.NewLine))
+                {
+                    instructions.Add(new Instruction(raw));
+                }
                 visitedInstructions = new HashSet<int>();
             }
 
-            public int DetectLoop()
+            public bool DetectLoop(out int acc)
             {
+                visitedInstructions.Clear();
+                pointer = 0;
+                accumulator = 0;
                 while (!visitedInstructions.Contains(pointer))
                 {
+                    if (pointer >= instructions.Count)
+                    {
+                        acc = accumulator;
+                        return false;
+                    }
                     visitedInstructions.Add(pointer);
                     ExecuteInstruction();
                 }
-                return accumulator;
+                acc = accumulator;
+                return true;
+            }
+
+            public int TryHealProgram()
+            {
+                // Try changing jmp->nop
+                for (int i = 0; i < instructions.Count; i++)
+                {
+                    var inst = instructions[i];
+                    if (inst.Operation == Operation.jmp)
+                    {
+                        inst.Operation = Operation.nop;
+                        if (!DetectLoop(out int acc))
+                        {
+                            return acc;
+                        }
+                        inst.Operation = Operation.jmp;
+                    }
+                }
+                // Try changing nop->jmp
+                for (int i = 0; i < instructions.Count; i++)
+                {
+                    var inst = instructions[i];
+                    if (inst.Operation == Operation.nop)
+                    {
+                        inst.Operation = Operation.jmp;
+                        if (!DetectLoop(out int acc))
+                        {
+                            return acc;
+                        }
+                        inst.Operation = Operation.nop;
+                    }
+                }
+
+                throw new Exception("Could not heal broken program!");
             }
 
             private void ExecuteInstruction()
             {
-                var parts = instructions[pointer].Split(' ');
-                var op = parts[0];
-                var arg = Int32.Parse(parts[1]);
+                var inst = instructions[pointer];
 
-                switch (op)
+                switch (inst.Operation)
                 {
-                    case "acc":
-                        accumulator += arg;
+                    case Operation.acc:
+                        accumulator += inst.Argument;
                         pointer++;
                         break;
-                    case "jmp":
-                        pointer += arg;
+                    case Operation.jmp:
+                        pointer += inst.Argument;
                         break;
-                    case "nop":
+                    case Operation.nop:
                         pointer++;
                         break;
                     default:
-                        throw new Exception($"Invalic operation [{op}]");
+                        break;
                 }
+            }
+
+            public class Instruction
+            {
+                public Operation Operation;
+                public int Argument;
+
+                public Instruction(string input)
+                {
+                    var parts = input.Split(" ");
+                    switch (parts[0])
+                    {
+                        case "acc":
+                            Operation = Operation.acc;
+                            break;
+                        case "jmp":
+                            Operation = Operation.jmp;
+                            break;
+                        case "nop":
+                            Operation = Operation.nop;
+                            break;
+                        default:
+                            throw new Exception($"Invalic operation [{parts[0]}]");
+                    }
+                    Argument = Int32.Parse(parts[1]);
+                }
+            }
+
+            public enum Operation
+            {
+                acc,
+                jmp,
+                nop
             }
         }
 
@@ -63,13 +142,16 @@ namespace AdventOfCode
         public static string Puzzle1(string input)
         {
             var gc = new GameConsole(input);
-            return gc.DetectLoop().ToString();
+            gc.DetectLoop(out int accumulator);
+            return accumulator.ToString();
         }
 
         // == == == == == Puzzle 2 == == == == ==
         public static string Puzzle2(string input)
         {
-            return input + "_Puzzle2";
+            var gc = new GameConsole(input);
+            var accumulator = gc.TryHealProgram();
+            return accumulator.ToString();
         }
     }
 }
