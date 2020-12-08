@@ -52,5 +52,5 @@ AMD Ryzen 9 3900X, 1 CPU, 24 logical and 12 physical cores
 ## Day 08
 | Method |      N |     Mean |    Error |   StdDev |
 |------- |------- |---------:|---------:|---------:|
-| D08_P1 | 100000 | 107.7 us |  1.70 us |  1.51 us |
-| D08_P2 | 100000 | 890.8 us | 14.04 us | 13.14 us |
+| D08_P1 | 100000 | 108.2 us |  1.17 us |  0.98 us |
+| D08_P2 | 100000 | 920.2 us | 12.20 us | 11.41 us |

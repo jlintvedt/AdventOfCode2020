@@ -15,8 +15,8 @@ namespace AdventOfCode
     {
         public class GameConsole
         {
-            private List<Instruction> instructions;
-            private HashSet<int> visitedInstructions;
+            private readonly List<Instruction> instructions;
+            private readonly HashSet<int> visitedInstructions;
             private int pointer = 0;
             private int accumulator = 0;
 
@@ -32,19 +32,25 @@ namespace AdventOfCode
 
             public bool DetectLoop(out int acc)
             {
+                // Clear state
                 visitedInstructions.Clear();
                 pointer = 0;
                 accumulator = 0;
+
+                // Run until loop detected, or program finishes
                 while (!visitedInstructions.Contains(pointer))
                 {
                     if (pointer >= instructions.Count)
                     {
+                        // Program terminated
                         acc = accumulator;
                         return false;
                     }
                     visitedInstructions.Add(pointer);
                     ExecuteInstruction();
                 }
+
+                // Loop Detected
                 acc = accumulator;
                 return true;
             }
@@ -65,6 +71,7 @@ namespace AdventOfCode
                         inst.Operation = Operation.jmp;
                     }
                 }
+
                 // Try changing nop->jmp
                 for (int i = 0; i < instructions.Count; i++)
                 {
@@ -114,17 +121,10 @@ namespace AdventOfCode
                     var parts = input.Split(" ");
                     switch (parts[0])
                     {
-                        case "acc":
-                            Operation = Operation.acc;
-                            break;
-                        case "jmp":
-                            Operation = Operation.jmp;
-                            break;
-                        case "nop":
-                            Operation = Operation.nop;
-                            break;
-                        default:
-                            throw new Exception($"Invalic operation [{parts[0]}]");
+                        case "acc": Operation = Operation.acc; break;
+                        case "jmp": Operation = Operation.jmp; break;
+                        case "nop": Operation = Operation.nop; break;
+                        default: throw new Exception($"Invalic operation [{parts[0]}]");
                     }
                     Argument = Int32.Parse(parts[1]);
                 }
