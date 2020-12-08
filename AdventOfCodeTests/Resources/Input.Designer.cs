@@ -373,11 +373,99 @@ namespace AdventOfCodeTests.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Day07_Puzzle.
+        ///   Looks up a localized string similar to vibrant bronze bags contain 3 dim olive bags.
+        ///shiny teal bags contain 1 posh green bag, 5 pale indigo bags, 1 mirrored purple bag.
+        ///striped aqua bags contain 5 bright orange bags.
+        ///clear chartreuse bags contain 3 dotted black bags, 2 wavy olive bags.
+        ///light lime bags contain 1 posh silver bag, 5 clear orange bags, 2 light olive bags, 3 dull maroon bags.
+        ///light olive bags contain 4 striped turquoise bags.
+        ///shiny purple bags contain 2 posh silver bags, 3 striped silver bags, 5 shiny beige bags, 2 plaid chart [rest of string was truncated]&quot;;.
         /// </summary>
         public static string D07_Puzzle {
             get {
                 return ResourceManager.GetString("D07_Puzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to acc +7
+        ///acc +23
+        ///acc +41
+        ///jmp +173
+        ///acc -17
+        ///acc +42
+        ///acc +31
+        ///jmp +349
+        ///jmp +1
+        ///jmp +252
+        ///nop +574
+        ///jmp +298
+        ///acc +45
+        ///acc +7
+        ///jmp +338
+        ///nop +5
+        ///nop +528
+        ///jmp +547
+        ///jmp +313
+        ///jmp +387
+        ///acc +43
+        ///acc +48
+        ///acc +38
+        ///jmp +45
+        ///jmp +438
+        ///acc +15
+        ///acc +21
+        ///acc +25
+        ///acc +25
+        ///jmp +168
+        ///jmp -5
+        ///acc +49
+        ///acc +43
+        ///jmp +99
+        ///acc -8
+        ///acc +16
+        ///acc -7
+        ///jmp +513
+        ///jmp +484
+        ///jmp +270
+        ///nop +422
+        ///acc -4
+        ///nop +242
+        ///jmp +1
+        ///jmp +11
+        ///nop +122
+        ///nop +263
+        ///acc +2
+        ///jmp +474
+        ///jmp +501
+        ///nop +38
+        ///acc -7
+        ///acc +0
+        ///nop +85
+        ///jmp +496
+        ///acc +11 [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string D08_Puzzle {
+            get {
+                return ResourceManager.GetString("D08_Puzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day09_Puzzle.
+        /// </summary>
+        public static string D09_Puzzle {
+            get {
+                return ResourceManager.GetString("D09_Puzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day10_Puzzle.
+        /// </summary>
+        public static string D10_Puzzle {
+            get {
+                return ResourceManager.GetString("D10_Puzzle", resourceCulture);
             }
         }
     }
