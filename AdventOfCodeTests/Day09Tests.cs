@@ -15,7 +15,7 @@ namespace AdventOfCodeTests
         {
             string day = "09";
             input_puzzle = Resources.Input.ResourceManager.GetObject($"D{day}_Puzzle").ToString();
-            input_example1 = string.Format("example{0}1", Environment.NewLine);
+            input_example1 = string.Format("35{0}20{0}15{0}25{0}47{0}40{0}62{0}55{0}65{0}95{0}102{0}117{0}150{0}182{0}127{0}219{0}299{0}277{0}309{0}576", Environment.NewLine);
             input_example2 = string.Format("example{0}2", Environment.NewLine);
         }
 
@@ -30,19 +30,20 @@ namespace AdventOfCodeTests
         {
             // Act
             var result = AdventOfCode.Day09.Puzzle1(input_puzzle);
-
+            
             // Assert
-            Assert.AreEqual($"{input_puzzle}_Puzzle1", result);
+            Assert.AreEqual("41682220", result);
         }
 
         [TestMethod]
         public void Puzzle1_Example()
         {
-            // Act
-            var result = AdventOfCode.Day09.Puzzle1(input_example1);
+            // Arrange - Must test directly on class as it uses another preamble length
+            var xc = new AdventOfCode.Day09.XmasCypher(input_example1, 5);
+            var result = xc.FindFirstWeakness().ToString();
 
             // Assert
-            Assert.AreEqual($"{input_example1}_Puzzle1", result);
+            Assert.AreEqual("127", result);
         }
 
         [TestMethod]
