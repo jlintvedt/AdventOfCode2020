@@ -23,6 +23,7 @@ namespace AdventOfCodeTests
         public void Puzzle0_WarmUp()
         {
             // Force performing LoadInput() warm-up as part of this test
+            var xc = new AdventOfCode.Day09.XmasCypher(input_example1, 5);
         }
 
         [TestMethod]
@@ -53,17 +54,18 @@ namespace AdventOfCodeTests
             var result = AdventOfCode.Day09.Puzzle2(input_puzzle);
 
             // Assert
-            Assert.AreEqual($"{input_puzzle}_Puzzle2", result);
+            Assert.AreEqual("5388976", result);
         }
 
         [TestMethod]
         public void Puzzle2_Example()
         {
-            // Act
-            var result = AdventOfCode.Day09.Puzzle2(input_example2);
+            // Arrange - Must test directly on class as it uses another preamble length
+            var xc = new AdventOfCode.Day09.XmasCypher(input_example1, 5);
+            var result = xc.FindEncryptionWeakness().ToString();
 
             // Assert
-            Assert.AreEqual($"{input_example2}_Puzzle2", result);
+            Assert.AreEqual("62", result);
         }
     }
 }
