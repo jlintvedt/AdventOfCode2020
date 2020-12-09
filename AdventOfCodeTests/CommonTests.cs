@@ -51,6 +51,21 @@ namespace AdventOfCodeTests
         }
 
         [TestMethod]
+        public void ParseStringToLongArray()
+        {
+            // Arrange
+            var input_nonDelim = "1234321";
+            var input_spaceDelim = "1 2 3 4 3 2 1";
+            var input_newlineDelim = "1 2 3 4 3 2 1".Replace(" ", Environment.NewLine);
+            var expected = new int[] { 1, 2, 3, 4, 3, 2, 1 };
+
+            // Act && Assert
+            CollectionAssert.AreEqual(expected, Common.ParseStringToIntArray(input_nonDelim));
+            CollectionAssert.AreEqual(expected, Common.ParseStringToIntArray(input_spaceDelim, " "));
+            CollectionAssert.AreEqual(expected, Common.ParseStringToIntArray(input_newlineDelim, Environment.NewLine));
+        }
+
+        [TestMethod]
         public void ParseStringToJaggedIntArray_CommaAndSpaceDelim()
         {
             // Arrange

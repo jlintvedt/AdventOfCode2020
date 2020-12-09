@@ -22,34 +22,21 @@ namespace AdventOfCode
 
             public long FindFirstWeakness()
             {
-                for (int i = preambleLen; i < numbers.Length; i++)
-                {
-                    if (!IsValid(i))
-                    {
-                        return numbers[i];
-                    }
-                }
-                throw new Exception($"Could not find weakness");
+                return numbers[FindWeaknessPosition()];
             }
 
             public long FindEncryptionWeakness()
             {
                 // Find weakness position
-                int pos;
-                for (pos = preambleLen; pos < numbers.Length; pos++)
-                {
-                    if (!IsValid(pos))
-                    {
-                        break;
-                    }
-                }
+                var pos = FindWeaknessPosition();
+                var weakness = numbers[pos];
 
                 // Find contigious set summing to weakness
                 var range = (0, pos - 1);
-                if (!FindContiguousSet(numbers[pos], ref range))
+                if (!FindContiguousSet(weakness, ref range))
                 {
-                    range = (pos + 1, numbers.Length);
-                    if (!FindContiguousSet(numbers[pos], ref range))
+                    range = (pos + 1, numbers.Length - 1);
+                    if (!FindContiguousSet(weakness, ref range))
                     {
                         throw new Exception($"Could not find weakness");
                     }
@@ -58,6 +45,18 @@ namespace AdventOfCode
                 // Return sum of smallest and largest
                 var set = numbers.Skip(range.Item1).Take(range.Item2 - range.Item1 + 1);
                 return set.Min() + set.Max();
+            }
+
+            private int FindWeaknessPosition()
+            {
+                for (int i = preambleLen; i < numbers.Length; i++)
+                {
+                    if (!IsValid(i))
+                    {
+                        return i;
+                    }
+                }
+                throw new Exception($"Could not find weakness");
             }
 
             private bool IsValid(int pos)
@@ -75,21 +74,18 @@ namespace AdventOfCode
                 return false;
             }
 
-            private bool FindContiguousSet(long sumTarget, ref (int,int) range)
+            private bool FindContiguousSet(long sumTarget, ref (int min, int max) range)
             {
-                var min = range.Item1;
-                var max = range.Item2;
-
-                for (int i = min; i < max-2; i++)
+                for (int i = range.min; i < range.max-2; i++)
                 {
                     var sum = numbers[i];
-                    for (int j = i+1; j <= max; j++)
+                    for (int j = i+1; j <= range.max; j++)
                     {
                         sum += numbers[j];
                         if (sum == sumTarget)
                         {
-                            range.Item1 = i;
-                            range.Item2 = j;
+                            range.min = i;
+                            range.max = j;
                             return true;
                         }
                         if (sum > sumTarget)
