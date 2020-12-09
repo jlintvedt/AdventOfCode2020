@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCodeTests
@@ -24,6 +25,7 @@ namespace AdventOfCodeTests
         {
             // Force performing LoadInput() warm-up as part of this test
             var xc = new AdventOfCode.Day09.XmasCypher(input_example1, 5);
+            var linqWarm = (new long[] { 1, 2, 3 }).Skip(1).Max();
         }
 
         [TestMethod]

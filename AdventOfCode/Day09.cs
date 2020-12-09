@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace AdventOfCode
 {
@@ -10,7 +11,7 @@ namespace AdventOfCode
     {
         public class XmasCypher
         {
-            private long[] numbers;
+            private readonly long[] numbers;
             private readonly int preambleLen;
 
             public XmasCypher(string rawInput, int preambleLength)
@@ -54,16 +55,9 @@ namespace AdventOfCode
                     }
                 }
 
-                var smallest = Int64.MaxValue;
-                var largest = Int64.MinValue;
-
-                for (int i = range.Item1; i < range.Item2; i++)
-                {
-                    smallest = numbers[i] < smallest ? numbers[i] : smallest;
-                    largest = numbers[i] > largest ? numbers[i] : largest;
-                }
-
-                return smallest + largest;
+                // Return sum of smallest and largest
+                var set = numbers.Skip(range.Item1).Take(range.Item2 - range.Item1 + 1);
+                return set.Min() + set.Max();
             }
 
             private bool IsValid(int pos)
