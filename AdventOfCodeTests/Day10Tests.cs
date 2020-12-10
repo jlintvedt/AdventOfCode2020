@@ -62,17 +62,27 @@ namespace AdventOfCodeTests
             var result = AdventOfCode.Day10.Puzzle2(input_puzzle);
 
             // Assert
-            Assert.AreEqual($"{input_puzzle}_Puzzle2", result);
+            Assert.AreEqual("9256148959232", result);
         }
 
         [TestMethod]
-        public void Puzzle2_Example()
+        public void Puzzle2_Example1()
+        {
+            // Act
+            var result = AdventOfCode.Day10.Puzzle2(input_example1);
+
+            // Assert
+            Assert.AreEqual("8", result);
+        }
+
+        [TestMethod]
+        public void Puzzle2_Example2()
         {
             // Act
             var result = AdventOfCode.Day10.Puzzle2(input_example2);
 
             // Assert
-            Assert.AreEqual($"{input_example2}_Puzzle2", result);
+            Assert.AreEqual("19208", result);
         }
     }
 }

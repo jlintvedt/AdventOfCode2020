@@ -11,25 +11,33 @@ namespace AdventOfCode
     {
         public class AdapterArray
         {
-            private List<int> Adapters;
+            private List<Adapter> Adapters;
 
             public AdapterArray(string rawInput)
             {
-                Adapters = Common.Common.ParseStringToIntArray(rawInput, Environment.NewLine).ToList();
-                Adapters.Sort();
+                Adapters = new List<Adapter>();
+                var jolts = Common.Common.ParseStringToIntArray(rawInput, Environment.NewLine).ToList();
+                jolts.Sort();
+                // Add outlet
+                Adapters.Add(new Adapter(0));
+                // Add adapters
+                foreach (var jolt in jolts)
+                {
+                    Adapters.Add(new Adapter(jolt));
+                }
                 // Add Device
-                Adapters.Add(Adapters[Adapters.Count - 1] + 3);
+                Adapters.Add(new Adapter(jolts[jolts.Count - 1] + 3));
             }
 
-            public int ChainAdapters()
+            public int ChainAllAdapters()
             {
                 var diffOne = 0;
                 var diffThree = 0;
                 var jolt = 0;
 
-                foreach (var adapter in Adapters)
+                foreach (var adapter in Adapters.Skip(1))
                 {
-                    var diff = adapter - jolt;
+                    var diff = adapter.Jolt - jolt;
                     if (diff == 1)
                     {
                         diffOne++;
@@ -43,10 +51,63 @@ namespace AdventOfCode
                     {
                         throw new ArgumentException("Invalid Jolt difference");
                     }
-                    jolt = adapter;
+                    jolt = adapter.Jolt;
                 }
 
                 return diffOne * diffThree;
+            }
+
+            public long FindPossibleAdapterArrangements()
+            {
+                // Make adapter tree
+                for (int i = 0; i < Adapters.Count; i++)
+                {
+                    var adapter = Adapters[i];
+                    for (int j = i+1; j < Adapters.Count; j++)
+                    {
+                        var next = Adapters[j];
+                        if (next.Jolt - adapter.Jolt > 3)
+                        {
+                            break;
+                        }
+                        adapter.nextAdapters.Add(next);
+                    }
+                }
+
+                return Adapters[0].FindBreanchPermutations();
+            }
+
+            public class Adapter
+            {
+                public int Jolt;
+                public List<Adapter> nextAdapters;
+                private long pathPossibilities = 0;
+
+                public Adapter(int jolt)
+                {
+                    Jolt = jolt;
+                    nextAdapters = new List<Adapter>();
+                }
+
+                public long FindBreanchPermutations()
+                {
+                    if (pathPossibilities > 0)
+                    {
+                        return pathPossibilities;
+                    }
+                    // Special case for leaf
+                    if (nextAdapters.Count == 0)
+                    {
+                        pathPossibilities = 1;
+                        return pathPossibilities;
+                    }
+                    // Normal case - Check nexts
+                    foreach (var adapter in nextAdapters)
+                    {
+                        pathPossibilities += adapter.FindBreanchPermutations();
+                    }
+                    return pathPossibilities;
+                }
             }
         }
 
@@ -54,13 +115,14 @@ namespace AdventOfCode
         public static string Puzzle1(string input)
         {
                 var aa = new AdapterArray(input);
-                return aa.ChainAdapters().ToString();
+                return aa.ChainAllAdapters().ToString();
         }
 
         // == == == == == Puzzle 2 == == == == ==
         public static string Puzzle2(string input)
         {
-            return input + "_Puzzle2";
+            var aa = new AdapterArray(input);
+            return aa.FindPossibleAdapterArrangements().ToString();
         }
     }
 }
