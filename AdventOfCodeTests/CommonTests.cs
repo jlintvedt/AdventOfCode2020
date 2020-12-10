@@ -54,15 +54,16 @@ namespace AdventOfCodeTests
         public void ParseStringToLongArray()
         {
             // Arrange
-            var input_nonDelim = "1234321";
             var input_spaceDelim = "1 2 3 4 3 2 1";
             var input_newlineDelim = "1 2 3 4 3 2 1".Replace(" ", Environment.NewLine);
-            var expected = new int[] { 1, 2, 3, 4, 3, 2, 1 };
+            var expected = new long[] { 1, 2, 3, 4, 3, 2, 1 };
+            var expected_long = new long[] { long.MinValue, ((long)int.MaxValue+(long)10), long.MaxValue };
+            var input_long = string.Format("{1}{0}{2}{0}{3}", Environment.NewLine, expected_long[0], expected_long[1], expected_long[2]);
 
             // Act && Assert
-            CollectionAssert.AreEqual(expected, Common.ParseStringToIntArray(input_nonDelim));
-            CollectionAssert.AreEqual(expected, Common.ParseStringToIntArray(input_spaceDelim, " "));
-            CollectionAssert.AreEqual(expected, Common.ParseStringToIntArray(input_newlineDelim, Environment.NewLine));
+            CollectionAssert.AreEqual(expected, Common.ParseStringToLongArray(input_spaceDelim, " "));
+            CollectionAssert.AreEqual(expected, Common.ParseStringToLongArray(input_newlineDelim, Environment.NewLine));
+            CollectionAssert.AreEqual(expected_long, Common.ParseStringToLongArray(input_long, Environment.NewLine));
         }
 
         [TestMethod]

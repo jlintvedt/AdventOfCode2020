@@ -18,14 +18,9 @@ namespace AdventOfCode.Common
             return input.Split(new[] { delim }, StringSplitOptions.None).Select(i => Convert.ToInt32(i)).ToArray();
         }
 
-        public static long[] ParseStringToLongArray(string input, string delim = null)
+        public static long[] ParseStringToLongArray(string input, string delim)
         {
-            if (delim == null)
-            {
-                // No delim, split on each character
-                return input.ToCharArray().Select(i => (long)Char.GetNumericValue(i)).ToArray();
-            }
-            return input.Split(new[] { delim }, StringSplitOptions.None).Select(i => Convert.ToInt64(i)).ToArray();
+            return Array.ConvertAll<string, long>(input.Split(new[] { delim }, StringSplitOptions.None), long.Parse);
         }
 
         public static int[][] ParseStringToJaggedIntArray(string input, string rowDelim = null, string columnDelim = null)
