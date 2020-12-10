@@ -76,22 +76,27 @@ namespace AdventOfCode
 
             private bool FindContiguousSet(long sumTarget, ref (int min, int max) range)
             {
-                for (int i = range.min; i < range.max-2; i++)
+                var lower = range.min;
+                var upper = lower;
+                var sum = numbers[lower];
+
+                while (upper <= range.max)
                 {
-                    var sum = numbers[i];
-                    for (int j = i+1; j <= range.max; j++)
+                    if (sum < sumTarget)
                     {
-                        sum += numbers[j];
-                        if (sum == sumTarget)
-                        {
-                            range.min = i;
-                            range.max = j;
-                            return true;
-                        }
-                        if (sum > sumTarget)
-                        {
-                            break;
-                        }
+                        upper++;
+                        sum += numbers[upper];
+                    }
+                    else if (sum > sumTarget)
+                    {
+                        sum -= numbers[lower];
+                        lower++;
+                    } 
+                    else
+                    {
+                        range.min = lower;
+                        range.max = upper;
+                        return true;
                     }
                 }
                 return false;
