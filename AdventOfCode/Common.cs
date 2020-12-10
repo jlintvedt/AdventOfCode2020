@@ -20,7 +20,7 @@ namespace AdventOfCode.Common
 
         public static long[] ParseStringToLongArray(string input, string delim)
         {
-            return Array.ConvertAll<string, long>(input.Split(new[] { delim }, StringSplitOptions.None), long.Parse);
+            return input.Split(new[] { delim }, StringSplitOptions.None).Select(long.Parse).ToArray();
         }
 
         public static int[][] ParseStringToJaggedIntArray(string input, string rowDelim = null, string columnDelim = null)
