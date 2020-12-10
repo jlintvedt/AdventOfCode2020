@@ -23,6 +23,7 @@ namespace AdventOfCodeTests
         public void Puzzle0_WarmUp()
         {
             // Force performing LoadInput() warm-up as part of this test
+            var day10 = new AdventOfCode.Day10.AdapterArray(input_example1);
         }
 
         [TestMethod]

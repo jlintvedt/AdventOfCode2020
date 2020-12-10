@@ -11,7 +11,7 @@ namespace AdventOfCode
     {
         public class AdapterArray
         {
-            private List<Adapter> Adapters;
+            private readonly List<Adapter> Adapters;
 
             public AdapterArray(string rawInput)
             {
@@ -31,80 +31,70 @@ namespace AdventOfCode
 
             public int ChainAllAdapters()
             {
-                var diffOne = 0;
-                var diffThree = 0;
                 var jolt = 0;
+                var diffs = new int[4];
 
-                foreach (var adapter in Adapters.Skip(1))
+                foreach (var adapter in Adapters)
                 {
-                    var diff = adapter.Jolt - jolt;
-                    if (diff == 1)
-                    {
-                        diffOne++;
-                    }
-                    else if (diff == 2) { }
-                    else if (diff == 3)
-                    {
-                        diffThree++;
-                    }
-                    else
-                    {
-                        throw new ArgumentException("Invalid Jolt difference");
-                    }
+                    diffs[adapter.Jolt - jolt]++;
                     jolt = adapter.Jolt;
                 }
 
-                return diffOne * diffThree;
+                return diffs[1]*diffs[3];
             }
 
             public long FindPossibleAdapterArrangements()
             {
-                // Make adapter tree
+                MakeAdapterTree();
+                return Adapters[0].FindBranchPermutations();
+            }
+
+            private void MakeAdapterTree()
+            {
                 for (int i = 0; i < Adapters.Count; i++)
                 {
                     var adapter = Adapters[i];
-                    for (int j = i+1; j < Adapters.Count; j++)
+                    for (int j = i + 1; j < Adapters.Count; j++)
                     {
                         var next = Adapters[j];
                         if (next.Jolt - adapter.Jolt > 3)
                         {
                             break;
                         }
-                        adapter.nextAdapters.Add(next);
+                        adapter.NextAdapters.Add(next);
                     }
                 }
-
-                return Adapters[0].FindBreanchPermutations();
             }
 
             public class Adapter
             {
                 public int Jolt;
-                public List<Adapter> nextAdapters;
+                public List<Adapter> NextAdapters;
                 private long pathPossibilities = 0;
 
                 public Adapter(int jolt)
                 {
                     Jolt = jolt;
-                    nextAdapters = new List<Adapter>();
+                    NextAdapters = new List<Adapter>();
                 }
 
-                public long FindBreanchPermutations()
+                public long FindBranchPermutations()
                 {
-                    if (pathPossibilities > 0)
+                    if (pathPossibilities == 0)
                     {
-                        return pathPossibilities;
-                    }
-                    // Special case for leaf
-                    if (nextAdapters.Count == 0)
-                    {
-                        pathPossibilities = 1;
-                        return pathPossibilities;
-                    }
-                    // Normal case - Check nexts
-                    foreach (var adapter in nextAdapters)
-                    {
-                        pathPossibilities += adapter.FindBreanchPermutations();
+                        if (NextAdapters.Count == 0)
+                        {
+                            // Special case for leaf
+                            pathPossibilities = 1;
+                        } 
+                        else
+                        {
+                            // Normal case - Check nexts
+                            foreach (var adapter in NextAdapters)
+                            {
+                                pathPossibilities += adapter.FindBranchPermutations();
+                            }
+                        }
                     }
                     return pathPossibilities;
                 }
