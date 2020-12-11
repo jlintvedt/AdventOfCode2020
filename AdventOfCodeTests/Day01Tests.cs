@@ -8,7 +8,6 @@ namespace AdventOfCodeTests
     {
         private string input_puzzle;
         private string input_example1;
-        private string input_example2;
 
         [TestInitialize]
         public void LoadInput()
@@ -16,7 +15,6 @@ namespace AdventOfCodeTests
             string day = "01";
             input_puzzle = Resources.Input.ResourceManager.GetObject($"D{day}_Puzzle").ToString();
             input_example1 = string.Format("1721{0}979{0}366{0}299{0}675{0}1456", Environment.NewLine);
-            input_example2 = "Example2";
         }
 
         [TestMethod]
