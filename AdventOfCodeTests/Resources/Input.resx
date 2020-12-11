@@ -157,4 +157,13 @@
   <data name="D10_Puzzle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>D10_Puzzle.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="D11_Puzzle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>D11_Puzzle.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="D12_Puzzle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>D12_Puzzle.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="D13_Puzzle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>D13_Puzzle.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
 </root>
