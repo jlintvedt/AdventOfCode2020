@@ -42,10 +42,7 @@ namespace AdventOfCode
 
             public int SteabilizeSeating()
             {
-                // First seating update
-                UpdateSeatingMap(1);
-                var rounds = 1;
-
+                var rounds = 0;
                 do {
                     rounds++;
                 } while (UpdateSeatingMap(1));
@@ -53,7 +50,18 @@ namespace AdventOfCode
                 return CountOccupiedSeats();
             }
 
-            private bool UpdateSeatingMap(int skipLayers)
+            public int SteabilizeSeatingBySight()
+            {
+                var rounds = 0;
+                do
+                {
+                    rounds++;
+                } while (UpdateSeatingMap(1, maxOccupied:5, sightRules:true));
+
+                return CountOccupiedSeats();
+            }
+
+            private bool UpdateSeatingMap(int skipLayers, int maxOccupied = 4, bool sightRules = false)
             {
                 var hasChanged = false;
                 // Update temporary seat map
@@ -63,14 +71,14 @@ namespace AdventOfCode
                     {
                         if (seats[row,col] == State.floor) { continue; }
                         var state = seats[row, col];
-                        var neighbours = CountNeighbours(row, col);
+                        var occupied = sightRules ? CountNeighboursInSight(row, col) : CountNeighbours(row, col);
                         if (state == State.empty)
                         {
-                            tmpSeats[row, col] = neighbours == 0 ? State.occupied : State.empty;
+                            tmpSeats[row, col] = occupied == 0 ? State.occupied : State.empty;
                         } 
                         else if (state == State.occupied)
                         {
-                            tmpSeats[row, col] = neighbours >= 4 ? State.empty : State.occupied;
+                            tmpSeats[row, col] = occupied >= maxOccupied ? State.empty : State.occupied;
                         }
                         // Check for change
                         if (!hasChanged && seats[row,col] != tmpSeats[row,col])
@@ -116,6 +124,35 @@ namespace AdventOfCode
                 return neighbours;
             }
 
+            private int CountNeighboursInSight(int row, int col)
+            {
+                var neighbours = 0;
+                int r = 0, c = 0;
+                int dist;
+                foreach (var (rowV, colV) in adjecent)
+                {
+                    var state = State.floor;
+                    dist = 0;
+                    while (state == State.floor)
+                    {
+                        dist++;
+                        r = row + rowV * dist;
+                        c = col + colV * dist;
+                        if (r < 0 || r >= height || c < 0 || c >= width)
+                        {
+                            break;
+                        }
+                        state = seats[r, c];
+                    }
+
+                    if (state == State.occupied)
+                    {
+                        neighbours++;
+                    }
+                }
+                return neighbours;
+            }
+
             public enum State
             {
                 floor,
@@ -134,7 +171,8 @@ namespace AdventOfCode
         // == == == == == Puzzle 2 == == == == ==
         public static string Puzzle2(string input)
         {
-            return input + "_Puzzle2";
+            var ss = new SeatingSystem(input);
+            return ss.SteabilizeSeatingBySight().ToString();
         }
     }
 }
