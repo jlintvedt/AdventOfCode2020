@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO.Pipes;
 using System.Linq;
 
 namespace AdventOfCode
@@ -15,7 +13,9 @@ namespace AdventOfCode
         {
             private readonly List<string> instructions;
             public Direction Orientation;
-            public (int x, int y) pos;
+            public (int x, int y) pos = (0, 0);
+            public (int x, int y) waypoint = (10, -1);
+            private readonly bool waypointMode;
             private static readonly Dictionary<char, Action> actionMapping = new Dictionary<char, Action>()
             {
                 { 'N', Action.north },
@@ -27,23 +27,41 @@ namespace AdventOfCode
                 { 'F', Action.forward },
             };
 
-            public Ferry(string rawInstructions)
+            public Ferry(string rawInstructions, bool waypointMode = false)
             {
                 instructions = rawInstructions.Split(Environment.NewLine).ToList();
                 Orientation = Direction.east;
-                pos = (0, 0);
+                this.waypointMode = waypointMode;
             }
 
             public int CalculateDistanceAfterManeuvers()
             {
                 foreach (var inst in instructions)
                 {
-                    var action = actionMapping[inst[0]];
-                    var value = Int32.Parse(inst.Substring(1));
-                    ExecuteInstruction(action, value);
+                    ExecuteRawInstruction(inst);
                 }
 
                 return CalculateManhattanDistance();
+            }
+
+            public static void ParseInstruction(string inst, out Action action, out int value)
+            {
+                action = actionMapping[inst[0]];
+                value = Int32.Parse(inst.Substring(1));
+            }
+
+            public void ExecuteRawInstruction(string instruction)
+            {
+                var action = actionMapping[instruction[0]];
+                var value = Int32.Parse(instruction.Substring(1));
+                if (waypointMode)
+                {
+                    ExecuteInstructionWaypointMode(action, value);
+                } 
+                else
+                {
+                    ExecuteInstruction(action, value);
+                }
             }
 
             public void ExecuteInstruction(Action action, int value)
@@ -76,6 +94,49 @@ namespace AdventOfCode
                 }
             }
 
+            public void ExecuteInstructionWaypointMode(Action action, int value)
+            {
+                switch (action)
+                {
+                    case Action.north:
+                        waypoint.y -= value;
+                        break;
+                    case Action.south:
+                        waypoint.y += value;
+                        break;
+                    case Action.east:
+                        waypoint.x += value;
+                        break;
+                    case Action.west:
+                        waypoint.x -= value;
+                        break;
+                    case Action.left:
+                        RotateWaypoint(-value);
+                        break;
+                    case Action.right:
+                        RotateWaypoint(value);
+                        break;
+                    case Action.forward:
+                        pos.x += waypoint.x * value;
+                        pos.y += waypoint.y * value;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            private void RotateWaypoint(int degreesCW)
+            {
+                degreesCW = degreesCW < 0 ? degreesCW + 360 : degreesCW;
+                var numClockwise = degreesCW / 90;
+                for (int i = 0; i < numClockwise; i++)
+                {
+                    var tmp = waypoint.x;
+                    waypoint.x = -waypoint.y;
+                    waypoint.y = tmp;
+                }
+            }
+
             public int CalculateManhattanDistance()
             {
                 return (pos.x > 0 ? pos.x : -pos.x) + (pos.y > 0 ? pos.y : -pos.y);
@@ -95,14 +156,15 @@ namespace AdventOfCode
         // == == == == == Puzzle 1 == == == == ==
         public static string Puzzle1(string input)
         {
-                var f = new Ferry(input);
-                return f.CalculateDistanceAfterManeuvers().ToString();
+            var f = new Ferry(input);
+            return f.CalculateDistanceAfterManeuvers().ToString();
         }
 
         // == == == == == Puzzle 2 == == == == ==
         public static string Puzzle2(string input)
         {
-            return input + "_Puzzle2";
+            var f = new Ferry(input, waypointMode: true);
+            return f.CalculateDistanceAfterManeuvers().ToString();
         }
     }
 }
