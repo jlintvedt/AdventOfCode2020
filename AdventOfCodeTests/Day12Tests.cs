@@ -68,80 +68,92 @@ namespace AdventOfCodeTests
 
         // == == == == == Ferry == == == == ==
         [TestMethod]
-        public void Ferry_ExecuteInstructions()
+        public void Ferry_ExecuteInstructions_Example()
         {
             // Arrange
-            var ferry = new AdventOfCode.Day12.Ferry("N3");
-            Dictionary<char, AdventOfCode.Day12.Ferry.Direction> direction = new Dictionary<char, AdventOfCode.Day12.Ferry.Direction>()
-            {
-                {'N', AdventOfCode.Day12.Ferry.Direction.north }, {'E', AdventOfCode.Day12.Ferry.Direction.east }, {'S', AdventOfCode.Day12.Ferry.Direction.south }, {'W', AdventOfCode.Day12.Ferry.Direction.west }
-            };
+            var ferry = new AdventOfCode.Day12.Ferry();
+            
 
             // Act & Assert
-            Assert.AreEqual((0, 0), ferry.pos);
+            Assert.IsTrue(ValidateFerryStatus(ferry, (0, 0)));
+
+            ferry.ExecuteRawInstruction("F10");
+            Assert.IsTrue(ValidateFerryStatus(ferry, pos: (10, 0)));
+
+            ferry.ExecuteRawInstruction("N3");
+            Assert.IsTrue(ValidateFerryStatus(ferry, pos: (10, -3)));
+
+            ferry.ExecuteRawInstruction("F7");
+            Assert.IsTrue(ValidateFerryStatus(ferry, pos: (17, -3)));
+
+            ferry.ExecuteRawInstruction("R90");
+            Assert.IsTrue(ValidateFerryStatus(ferry, dir:'S'));
+
+            ferry.ExecuteRawInstruction("F11");
+            Assert.IsTrue(ValidateFerryStatus(ferry, pos: (17, 8)));
         }
 
         [TestMethod]
         public void Ferry_ExecuteInstructionsWaypointMode_Example()
         {
             // Arrange
-            var ferry = new AdventOfCode.Day12.Ferry("N3", waypointMode: true);
+            var ferry = new AdventOfCode.Day12.Ferry(waypointMode: true);
 
             // Act & Assert
-            Assert.IsTrue(CheckFerryStatus(ferry, (0, 0)));
-            Assert.IsTrue(CheckFerryStatus(ferry, waypoint: (10, -1)));
+            Assert.IsTrue(ValidateFerryStatus(ferry, (0, 0)));
+            Assert.IsTrue(ValidateFerryStatus(ferry, waypoint: (10, -1)));
 
             ferry.ExecuteRawInstruction("F10");
-            Assert.IsTrue(CheckFerryStatus(ferry, pos: (100, -10)));
+            Assert.IsTrue(ValidateFerryStatus(ferry, pos: (100, -10)));
 
             ferry.ExecuteRawInstruction("N3");
-            Assert.IsTrue(CheckFerryStatus(ferry, waypoint: (10, -4)));
+            Assert.IsTrue(ValidateFerryStatus(ferry, waypoint: (10, -4)));
 
             ferry.ExecuteRawInstruction("F7");
-            Assert.IsTrue(CheckFerryStatus(ferry, pos: (170, -38)));
+            Assert.IsTrue(ValidateFerryStatus(ferry, pos: (170, -38)));
 
             ferry.ExecuteRawInstruction("R90");
-            Assert.IsTrue(CheckFerryStatus(ferry, waypoint: (4, 10)));
+            Assert.IsTrue(ValidateFerryStatus(ferry, waypoint: (4, 10)));
 
             ferry.ExecuteRawInstruction("F11");
-            Assert.IsTrue(CheckFerryStatus(ferry, pos: (214, 72)));
+            Assert.IsTrue(ValidateFerryStatus(ferry, pos: (214, 72)));
         }
 
         [TestMethod]
         public void Ferry_ExecuteInstructionsWaypointMode_RotateWaypoint()
         {
             // Arrange
-            var ferry = new AdventOfCode.Day12.Ferry("N3", waypointMode: true);
+            var ferry = new AdventOfCode.Day12.Ferry(waypointMode: true);
             var waypoints = new Dictionary<string, (int, int)>()
             {
                 {"NE", (10,-1) }, {"SE", (1,10) },{"SW", (-10,1) },{"NW", (-1,-10) }
             };
 
             // Act & Assert
-            Assert.IsTrue(CheckFerryStatus(ferry, (0, 0)));
-            Assert.IsTrue(CheckFerryStatus(ferry, waypoint: waypoints["NE"]));
+            Assert.IsTrue(ValidateFerryStatus(ferry, (0, 0)));
+            Assert.IsTrue(ValidateFerryStatus(ferry, waypoint: waypoints["NE"]));
 
             ferry.ExecuteRawInstruction("R90");
-            Assert.IsTrue(CheckFerryStatus(ferry, waypoint: waypoints["SE"]));
+            Assert.IsTrue(ValidateFerryStatus(ferry, waypoint: waypoints["SE"]));
             
             ferry.ExecuteRawInstruction("R180");
-            Assert.IsTrue(CheckFerryStatus(ferry, waypoint: waypoints["NW"]));
+            Assert.IsTrue(ValidateFerryStatus(ferry, waypoint: waypoints["NW"]));
 
             ferry.ExecuteRawInstruction("R270");
-            Assert.IsTrue(CheckFerryStatus(ferry, waypoint: waypoints["SW"]));
+            Assert.IsTrue(ValidateFerryStatus(ferry, waypoint: waypoints["SW"]));
 
             ferry.ExecuteRawInstruction("L90");
-            Assert.IsTrue(CheckFerryStatus(ferry, waypoint: waypoints["SE"]));
+            Assert.IsTrue(ValidateFerryStatus(ferry, waypoint: waypoints["SE"]));
 
             ferry.ExecuteRawInstruction("L90");
-            Assert.IsTrue(CheckFerryStatus(ferry, waypoint: waypoints["NE"]));
+            Assert.IsTrue(ValidateFerryStatus(ferry, waypoint: waypoints["NE"]));
 
             ferry.ExecuteRawInstruction("L90");
-            Assert.IsTrue(CheckFerryStatus(ferry, waypoint: waypoints["NW"]));
+            Assert.IsTrue(ValidateFerryStatus(ferry, waypoint: waypoints["NW"]));
 
         }
 
-        private bool CheckFerryStatus(AdventOfCode.Day12.Ferry ferry, (int, int)? pos=null, (int,int)?waypoint=null, AdventOfCode.Day12.Ferry.Direction? dir=null)
+        private bool ValidateFerryStatus(AdventOfCode.Day12.Ferry ferry, (int, int)? pos=null, (int,int)?waypoint=null, char? dir = null)
         {
             if (pos != null && ferry.pos != pos)
             {
@@ -151,9 +163,13 @@ namespace AdventOfCodeTests
             {
                 return false;
             }
-            if (dir != null && ferry.Orientation != dir)
+            if (dir != null)
             {
-                return false;
+                var d = (new Dictionary<char, AdventOfCode.Day12.Ferry.Direction>() { { 'N', AdventOfCode.Day12.Ferry.Direction.north }, { 'E', AdventOfCode.Day12.Ferry.Direction.east }, { 'S', AdventOfCode.Day12.Ferry.Direction.south }, { 'W', AdventOfCode.Day12.Ferry.Direction.west } })[(char)dir];
+                if (ferry.Orientation != d)
+                {
+                    return false;
+                }
             }
             return true;
         }

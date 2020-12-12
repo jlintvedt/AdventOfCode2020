@@ -11,7 +11,6 @@ namespace AdventOfCode
     {
         public class Ferry
         {
-            private readonly List<string> instructions;
             public Direction Orientation;
             public (int x, int y) pos = (0, 0);
             public (int x, int y) waypoint = (10, -1);
@@ -27,14 +26,13 @@ namespace AdventOfCode
                 { 'F', Action.forward },
             };
 
-            public Ferry(string rawInstructions, bool waypointMode = false)
+            public Ferry(bool waypointMode = false)
             {
-                instructions = rawInstructions.Split(Environment.NewLine).ToList();
                 Orientation = Direction.east;
                 this.waypointMode = waypointMode;
             }
 
-            public int CalculateDistanceAfterManeuvers()
+            public int CalculateDistanceAfterManeuvers(List<string> instructions)
             {
                 foreach (var inst in instructions)
                 {
@@ -42,12 +40,6 @@ namespace AdventOfCode
                 }
 
                 return CalculateManhattanDistance();
-            }
-
-            public static void ParseInstruction(string inst, out Action action, out int value)
-            {
-                action = actionMapping[inst[0]];
-                value = Int32.Parse(inst.Substring(1));
             }
 
             public void ExecuteRawInstruction(string instruction)
@@ -87,7 +79,7 @@ namespace AdventOfCode
                         Orientation = (Direction)(((int)Orientation + value/90) % 4);
                         break;
                     case Action.forward:
-                        ExecuteInstruction((Action)(int)Orientation, value);
+                        ExecuteInstruction((Action)Orientation, value);
                         break;
                     default:
                         break;
@@ -156,15 +148,17 @@ namespace AdventOfCode
         // == == == == == Puzzle 1 == == == == ==
         public static string Puzzle1(string input)
         {
-            var f = new Ferry(input);
-            return f.CalculateDistanceAfterManeuvers().ToString();
+            var instructions = input.Split(Environment.NewLine).ToList();
+            var f = new Ferry();
+            return f.CalculateDistanceAfterManeuvers(instructions).ToString();
         }
 
         // == == == == == Puzzle 2 == == == == ==
         public static string Puzzle2(string input)
         {
-            var f = new Ferry(input, waypointMode: true);
-            return f.CalculateDistanceAfterManeuvers().ToString();
+            var instructions = input.Split(Environment.NewLine).ToList();
+            var f = new Ferry(waypointMode: true);
+            return f.CalculateDistanceAfterManeuvers(instructions).ToString();
         }
     }
 }
