@@ -15,16 +15,6 @@ namespace AdventOfCode
             public (int x, int y) pos = (0, 0);
             public (int x, int y) waypoint = (10, -1);
             private readonly bool waypointMode;
-            private static readonly Dictionary<char, Action> actionMapping = new Dictionary<char, Action>()
-            {
-                { 'N', Action.north },
-                { 'S', Action.south },
-                { 'E', Action.east },
-                { 'W', Action.west },
-                { 'L', Action.left },
-                { 'R', Action.right },
-                { 'F', Action.forward },
-            };
 
             public Ferry(bool waypointMode = false)
             {
@@ -44,7 +34,7 @@ namespace AdventOfCode
 
             public void ExecuteRawInstruction(string instruction)
             {
-                var action = actionMapping[instruction[0]];
+                var action = GetAction(instruction[0]);
                 var value = Int32.Parse(instruction.Substring(1));
                 if (waypointMode)
                 {
@@ -132,6 +122,21 @@ namespace AdventOfCode
             public int CalculateManhattanDistance()
             {
                 return (pos.x > 0 ? pos.x : -pos.x) + (pos.y > 0 ? pos.y : -pos.y);
+            }
+
+            private static Action GetAction(char action)
+            {
+                switch (action)
+                {
+                    case 'N': return Action.north;
+                    case 'S': return Action.south;
+                    case 'E': return Action.east;
+                    case 'W': return Action.west;
+                    case 'L': return Action.left;
+                    case 'R': return Action.right;
+                    case 'F': return Action.forward;
+                    default: throw new Exception($"Unknown action: {action}");
+                }
             }
 
             public enum Action
