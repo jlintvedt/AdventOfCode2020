@@ -40,7 +40,7 @@ namespace AdventOfCode
                 }
             }
 
-            public int SteabilizeSeating()
+            public int StabilizeSeating()
             {
                 var rounds = 0;
                 do {
@@ -50,7 +50,7 @@ namespace AdventOfCode
                 return CountOccupiedSeats();
             }
 
-            public int SteabilizeSeatingBySight()
+            public int StabilizeSeatingBySight()
             {
                 var rounds = 0;
                 do
@@ -127,7 +127,7 @@ namespace AdventOfCode
             private int CountNeighboursInSight(int row, int col)
             {
                 var neighbours = 0;
-                int r = 0, c = 0;
+                int r, c;
                 int dist;
                 foreach (var (rowV, colV) in adjecent)
                 {
@@ -138,7 +138,7 @@ namespace AdventOfCode
                         dist++;
                         r = row + rowV * dist;
                         c = col + colV * dist;
-                        if (r < 0 || r >= height || c < 0 || c >= width)
+                        if (r <= 0 || r >= height-1 || c < 1 || c >= width-1)
                         {
                             break;
                         }
@@ -165,14 +165,14 @@ namespace AdventOfCode
         public static string Puzzle1(string input)
         {
             var ss = new SeatingSystem(input);
-            return ss.SteabilizeSeating().ToString();
+            return ss.StabilizeSeating().ToString();
         }
 
         // == == == == == Puzzle 2 == == == == ==
         public static string Puzzle2(string input)
         {
             var ss = new SeatingSystem(input);
-            return ss.SteabilizeSeatingBySight().ToString();
+            return ss.StabilizeSeatingBySight().ToString();
         }
     }
 }
