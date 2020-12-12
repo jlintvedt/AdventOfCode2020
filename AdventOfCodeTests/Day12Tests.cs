@@ -15,7 +15,7 @@ namespace AdventOfCodeTests
         {
             string day = "12";
             input_puzzle = Resources.Input.ResourceManager.GetObject($"D{day}_Puzzle").ToString();
-            input_example1 = string.Format("example{0}1", Environment.NewLine);
+            input_example1 = string.Format("F10{0}N3{0}F7{0}R90{0}F11", Environment.NewLine);
             input_example2 = string.Format("example{0}2", Environment.NewLine);
         }
 
@@ -32,7 +32,7 @@ namespace AdventOfCodeTests
             var result = AdventOfCode.Day12.Puzzle1(input_puzzle);
 
             // Assert
-            Assert.AreEqual($"{input_puzzle}_Puzzle1", result);
+            Assert.AreEqual("1032", result);
         }
 
         [TestMethod]
@@ -42,7 +42,7 @@ namespace AdventOfCodeTests
             var result = AdventOfCode.Day12.Puzzle1(input_example1);
 
             // Assert
-            Assert.AreEqual($"{input_example1}_Puzzle1", result);
+            Assert.AreEqual("25", result);
         }
 
         [TestMethod]
@@ -63,6 +63,17 @@ namespace AdventOfCodeTests
 
             // Assert
             Assert.AreEqual($"{input_example2}_Puzzle2", result);
+        }
+
+        // == == == == == Ferry == == == == ==
+        [TestMethod]
+        public void Ferry_ExecuteInstructions()
+        {
+            // Arrange
+            var ferry = new AdventOfCode.Day12.Ferry("N3");
+
+            // Act & Assert
+            Assert.AreEqual((0, 0), ferry.pos);
         }
     }
 }
