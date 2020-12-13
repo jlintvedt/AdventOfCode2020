@@ -1,4 +1,5 @@
 using System;
+using AdventOfCodeTests.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCodeTests
@@ -31,6 +32,7 @@ namespace AdventOfCodeTests
         public void Puzzle0_WarmUp()
         {
             // Force performing LoadInput() warm-up as part of this test
+            var ss = new AdventOfCode.Day13.ShuttleSearch(input_example1);
         }
 
         [TestMethod]
@@ -70,8 +72,8 @@ namespace AdventOfCodeTests
             string result;
 
             // Act & Assert
-            ///result = AdventOfCode.Day13.Puzzle2(input_example1);
-            //Assert.AreEqual("1068781", result);
+            result = AdventOfCode.Day13.Puzzle2(input_example1);
+            Assert.AreEqual("1068781", result);
 
             result = AdventOfCode.Day13.Puzzle2(input_example2);
             Assert.AreEqual("3417", result);

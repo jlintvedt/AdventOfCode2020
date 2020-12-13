@@ -14,30 +14,30 @@ namespace AdventOfCode
         {
 
             public int EarliestDeparture;
-            public string[] RawIds;
-            public List<int> BusIds;
+            public List<(long id, long offset)> Busses;
 
             public ShuttleSearch(string rawInput)
             {
                 var parts = rawInput.Split(Environment.NewLine);
                 EarliestDeparture = Int32.Parse(parts[0]);
-                RawIds = parts[1].Split(',');
-                BusIds = new List<int>();
-                foreach (var id in RawIds)
+                var rawIds = parts[1].Split(',');
+                Busses = new List<(long id, long offset)>();
+                
+                for (int i = 0; i < rawIds.Length; i++)
                 {
-                    if (int.TryParse(id, out int intId))
+                    if (Int32.TryParse(rawIds[i], out int id))
                     {
-                        BusIds.Add(intId);
+                        Busses.Add((id, i));
                     }
                 }
             }
 
-            public int FindEarliestBus()
+            public long FindEarliestBus()
             {
-                var bestId = 0;
-                var waitMinutes = int.MaxValue;
+                long bestId = 0;
+                var waitMinutes = long.MaxValue;
 
-                foreach (var id in BusIds)
+                foreach (var (id, index) in Busses)
                 {
                     var minutes = (EarliestDeparture / id + 1) * (id) - EarliestDeparture;
                     if (minutes < waitMinutes)
@@ -50,27 +50,19 @@ namespace AdventOfCode
                 return bestId * waitMinutes;
             }
 
-            public ulong FindPerfectDepartureOrderTimestamp()
+            public long FindPerfectDepartureOrderTimestamp()
             {
-                var busInfo = new List<Bus>();
-                for (int i = 0; i < RawIds.Length; i++)
+                // Credit: https://www.reddit.com/r/adventofcode/comments/kc4njx/2020_day_13_solutions/gfncyoc/
+                var time = Busses[0].id;
+                long step = 1;
+                foreach (var (id, index) in Busses)
                 {
-                    if (Int32.TryParse(RawIds[i], out int id))
+                    for (long i = time; ; i += step)
                     {
-                        busInfo.Add(new Bus((ulong)id, (ulong)i));
-                    }
-                }
-
-                var time = busInfo[0].Id;
-                ulong step = 1;
-                foreach (var bus in busInfo)
-                {
-                    for (ulong i = time; ; i += step)
-                    {
-                        if ((i + bus.Offset) % bus.Id == 0)
+                        if ((i + index) % id == 0)
                         {
                             time = i;
-                            step *= bus.Id;
+                            step *= id;
                             break;
                         }
                     }
