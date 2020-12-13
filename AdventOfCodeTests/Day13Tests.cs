@@ -15,7 +15,7 @@ namespace AdventOfCodeTests
         {
             string day = "13";
             input_puzzle = Resources.Input.ResourceManager.GetObject($"D{day}_Puzzle").ToString();
-            input_example1 = string.Format("example{0}1", Environment.NewLine);
+            input_example1 = string.Format("939{0}7,13,x,x,59,x,31,19", Environment.NewLine);
             input_example2 = string.Format("example{0}2", Environment.NewLine);
         }
 
@@ -32,7 +32,7 @@ namespace AdventOfCodeTests
             var result = AdventOfCode.Day13.Puzzle1(input_puzzle);
 
             // Assert
-            Assert.AreEqual($"{input_puzzle}_Puzzle1", result);
+            Assert.AreEqual("171", result);
         }
 
         [TestMethod]
@@ -42,7 +42,7 @@ namespace AdventOfCodeTests
             var result = AdventOfCode.Day13.Puzzle1(input_example1);
 
             // Assert
-            Assert.AreEqual($"{input_example1}_Puzzle1", result);
+            Assert.AreEqual("295", result);
         }
 
         [TestMethod]
