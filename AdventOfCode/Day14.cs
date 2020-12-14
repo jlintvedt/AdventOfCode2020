@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -56,7 +56,6 @@ namespace AdventOfCode
                     {
                         ExecuteWriteToMemoryVersion2(memAdr, intValue);
                     }
-                    
                 }
             }
 
@@ -153,6 +152,7 @@ namespace AdventOfCode
                         values.Add(0);
                         values.Add(1);
                     }
+                    var valuesLength = values.Count;
 
                     // Step through the remaining bits
                     for (int i = 34; i >= 0; i--)
@@ -162,7 +162,7 @@ namespace AdventOfCode
                             // Non-floating, increase if set
                             if ((bool)bits[i] || binary[i]=='1')
                             {
-                                for (int j = 0; j < values.Count; j++)
+                                for (int j = 0; j < valuesLength; j++)
                                 {
                                     values[j] += bitValue;
                                 }
@@ -171,11 +171,11 @@ namespace AdventOfCode
                         else
                         {
                             // Floating bit
-                            var initialLen = values.Count;
-                            for (int j = 0; j < initialLen; j++)
+                            for (int j = 0; j < valuesLength; j++)
                             {
                                 values.Add(values[j] + bitValue);
                             }
+                            valuesLength *= 2;
                         }
 
                         bitValue *= 2;
