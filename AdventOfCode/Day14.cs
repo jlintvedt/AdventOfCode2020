@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AdventOfCode
 {
@@ -10,37 +11,27 @@ namespace AdventOfCode
     {
         public class DockingProgram
         {
-            private string[] instructions;
+            public readonly Dictionary<long, long> Memory;
+            private readonly string[] instructions;
             private readonly BitMask Mask;
-            public readonly Dictionary<ulong, ulong> Memory;
-            private bool useVersion2;
+            private readonly bool useVersion2;
 
             public DockingProgram(string rawInput, bool useBitMaskVersion2 =false)
             {
+                Memory = new Dictionary<long, long>();
                 instructions = rawInput.Split(Environment.NewLine);
                 Mask = new BitMask();
-                Memory = new Dictionary<ulong, ulong>();
                 useVersion2 = useBitMaskVersion2;
             }
 
-            public ulong CalculateProgramSum()
+            public long CalculateProgramSum()
             {
                 foreach (var inst in instructions)
                 {
                     ExecuteRawInstruction(inst);
                 }
 
-                return SumEntireMemory();
-            }
-
-            private ulong SumEntireMemory()
-            {
-                ulong totalValue = 0;
-                foreach (var value in Memory.Values)
-                {
-                    totalValue += value;
-                }
-                return totalValue;
+                return Memory.Values.Sum();
             }
 
             public void ExecuteRawInstruction(string instruction)
@@ -107,22 +98,22 @@ namespace AdventOfCode
 
                     for (int i = 0; i < 36; i++)
                     {
-                        switch (bitString[i])
+                        bits[i] = (bitString[i]) switch
                         {
-                            case '0': bits[i] = false; break;
-                            case '1': bits[i] = true; break;
-                            case 'X': bits[i] = null; break;
-                            default: throw new ArgumentException();
-                        }
+                            '0' => false,
+                            '1' => true,
+                            'X' => null,
+                            _ => throw new ArgumentException(),
+                        };
                     }
                 }
 
-                public ulong Mask (uint input)
+                public long Mask (uint input)
                 {
                     var binary = Convert.ToString(input, 2);
                     binary = binary.PadLeft(36, '0');
-                    ulong value = 0;
-                    ulong bitValue = 1;
+                    long value = 0;
+                    long bitValue = 1;
                     for (int i = 35; i >= 0; i--)
                     {
                         bool isSet = false;
@@ -145,16 +136,17 @@ namespace AdventOfCode
                     return value;
                 }
 
-                public List<ulong> MaskVersion2(uint input)
+                public List<long> MaskVersion2(uint input)
                 {
                     var binary = Convert.ToString(input, 2);
                     binary = binary.PadLeft(36, '0');
-                    List<ulong> values = new List<ulong>();
-                    ulong bitValue = 2;
+                    List<long> values = new List<long>();
+                    long bitValue = 2;
+                    
                     // LSB seed
                     if (bits[35] != null)
                     {
-                        values.Add((ulong)((bool)bits[35] ? 1 : (binary[35] == '1' ? 1 : 0)));
+                        values.Add(((bool)bits[35] ? 1 : (binary[35] == '1' ? 1 : 0)));
                     } 
                     else
                     {
@@ -162,6 +154,7 @@ namespace AdventOfCode
                         values.Add(1);
                     }
 
+                    // Step through the remaining bits
                     for (int i = 34; i >= 0; i--)
                     {
                         if (bits[i] != null)

@@ -82,9 +82,9 @@ namespace AdventOfCodeTests
 
             dp.ExecuteRawInstruction("mask = 111111111111111111111111111111111111");
             dp.ExecuteRawInstruction("mem[1] = 4294967295");
-            Assert.AreEqual((ulong)68719476735, dp.Memory[1]);
+            Assert.AreEqual((long)68719476735, dp.Memory[1]);
             dp.ExecuteRawInstruction("mem[2] = 0");
-            Assert.AreEqual((ulong)68719476735, dp.Memory[2]);
+            Assert.AreEqual((long)68719476735, dp.Memory[2]);
         }
 
         // == == == == == BitMask == == == == ==
@@ -96,11 +96,11 @@ namespace AdventOfCodeTests
 
             // Act & Assert
             bm.SetMask("000000000000000000000000000000X1001X");
-            var expected = new List<ulong>() { 26, 27, 58, 59 };
+            var expected = new List<long>() { 26, 27, 58, 59 };
             CollectionAssert.AreEqual(expected, bm.MaskVersion2(42));
 
             bm.SetMask("00000000000000000000000000000000X0XX");
-            expected = new List<ulong>() { 16, 17, 18, 19, 24, 25, 26, 27 };
+            expected = new List<long>() { 16, 17, 18, 19, 24, 25, 26, 27 };
             CollectionAssert.AreEqual(expected, bm.MaskVersion2(26));
         }
     }
