@@ -12,13 +12,15 @@ namespace AdventOfCode
         {
             private string[] instructions;
             private readonly BitMask Mask;
-            public readonly Dictionary<uint, ulong> Memory;
+            public readonly Dictionary<ulong, ulong> Memory;
+            private bool useVersion2;
 
-            public DockingProgram(string rawInput)
+            public DockingProgram(string rawInput, bool useBitMaskVersion2 =false)
             {
                 instructions = rawInput.Split(Environment.NewLine);
                 Mask = new BitMask();
-                Memory = new Dictionary<uint, ulong>();
+                Memory = new Dictionary<ulong, ulong>();
+                useVersion2 = useBitMaskVersion2;
             }
 
             public ulong CalculateProgramSum()
@@ -55,7 +57,15 @@ namespace AdventOfCode
                 {
                     var memAdr = UInt32.Parse(type[4..^1]);
                     var intValue = UInt32.Parse(value);
-                    ExecuteWriteToMemory(memAdr, intValue);
+                    if (!useVersion2)
+                    {
+                        ExecuteWriteToMemory(memAdr, intValue);
+                    } 
+                    else
+                    {
+                        ExecuteWriteToMemoryVersion2(memAdr, intValue);
+                    }
+                    
                 }
             }
 
@@ -68,6 +78,15 @@ namespace AdventOfCode
             {
                 var maskedValue = Mask.Mask(value);
                 Memory[address] = maskedValue;
+            }
+
+            private void ExecuteWriteToMemoryVersion2(uint address, uint value)
+            {
+                var addresses = Mask.MaskVersion2(address);
+                foreach (var addr in addresses)
+                {
+                    Memory[addr] = value;
+                }
             }
 
             public class BitMask
@@ -125,6 +144,52 @@ namespace AdventOfCode
 
                     return value;
                 }
+
+                public List<ulong> MaskVersion2(uint input)
+                {
+                    var binary = Convert.ToString(input, 2);
+                    binary = binary.PadLeft(36, '0');
+                    List<ulong> values = new List<ulong>();
+                    ulong bitValue = 2;
+                    // LSB seed
+                    if (bits[35] != null)
+                    {
+                        values.Add((ulong)((bool)bits[35] ? 1 : (binary[35] == '1' ? 1 : 0)));
+                    } 
+                    else
+                    {
+                        values.Add(0);
+                        values.Add(1);
+                    }
+
+                    for (int i = 34; i >= 0; i--)
+                    {
+                        if (bits[i] != null)
+                        {
+                            // Non-floating, increase if set
+                            if ((bool)bits[i] || binary[i]=='1')
+                            {
+                                for (int j = 0; j < values.Count; j++)
+                                {
+                                    values[j] += bitValue;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            // Floating bit
+                            var initialLen = values.Count;
+                            for (int j = 0; j < initialLen; j++)
+                            {
+                                values.Add(values[j] + bitValue);
+                            }
+                        }
+
+                        bitValue *= 2;
+                    }
+
+                    return values;
+                }
             }
         }
 
@@ -138,7 +203,8 @@ namespace AdventOfCode
         // == == == == == Puzzle 2 == == == == ==
         public static string Puzzle2(string input)
         {
-            return input + "_Puzzle2";
+            var dp = new DockingProgram(input, useBitMaskVersion2:true);
+            return dp.CalculateProgramSum().ToString();
         }
     }
 }
