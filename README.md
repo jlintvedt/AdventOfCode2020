@@ -24,6 +24,20 @@
 |                                | Puzzle2 |                          |                       | 
 | [Day10](AdventOfCode/Day10.cs) | Puzzle1 |                          |                       |
 |                                | Puzzle2 |                          |                       | 
+| [Day11](AdventOfCode/Day11.cs) | Puzzle1 |                          |                       |
+|                                | Puzzle2 |                          |                       | 
+| [Day12](AdventOfCode/Day12.cs) | Puzzle1 |                          |                       |
+|                                | Puzzle2 |                          |                       | 
+| [Day13](AdventOfCode/Day13.cs) | Puzzle1 |                          |                       |
+|                                | Puzzle2 |                          |                       | 
+| [Day14](AdventOfCode/Day14.cs) | Puzzle1 |                          |                       |
+|                                | Puzzle2 |                          |                       | 
+| [Day15](AdventOfCode/Day15.cs) | Puzzle1 |                          |                       |
+|                                | Puzzle2 |                          |                       | 
+| [Day16](AdventOfCode/Day16.cs) | Puzzle1 |                          |                       |
+|                                | Puzzle2 |                          |                       | 
+| [Day17](AdventOfCode/Day17.cs) | Puzzle1 |                          |                       |
+|                                | Puzzle2 |                          |                       | 
 -->
 
 
