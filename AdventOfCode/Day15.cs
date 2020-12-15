@@ -15,9 +15,9 @@ namespace AdventOfCode
             private int turnNumber;
             private Number lastSpoken;
 
-            public MemoryGame(string input)
+            public MemoryGame(string input, int memorySize = 2020)
             {
-                Numbers = new Number[2020];
+                Numbers = new Number[memorySize];
 
                 turnNumber = 1;
                 var inputNum = Common.Common.ParseStringToIntArray(input, ",");
@@ -92,7 +92,8 @@ namespace AdventOfCode
         // == == == == == Puzzle 2 == == == == ==
         public static string Puzzle2(string input)
         {
-            return input + "_Puzzle2";
+            var mg = new MemoryGame(input, 30000000);
+            return mg.FindSpokenNumberOnTurn(30000000).ToString();
         }
     }
 }
