@@ -52,17 +52,17 @@ namespace AdventOfCodeTests
             var result = AdventOfCode.Day17.Puzzle2(input_puzzle);
 
             // Assert
-            Assert.AreEqual($"{input_puzzle}_Puzzle2", result);
+            Assert.AreEqual("2064", result);
         }
 
         [TestMethod]
         public void Puzzle2_Example()
         {
             // Act
-            var result = AdventOfCode.Day17.Puzzle2(input_example2);
+            var result = AdventOfCode.Day17.Puzzle2(input_example1);
 
             // Assert
-            Assert.AreEqual($"{input_example2}_Puzzle2", result);
+            Assert.AreEqual("848", result);
         }
     }
 }
