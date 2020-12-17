@@ -45,6 +45,7 @@ namespace AdventOfCodeTests
             Assert.AreEqual("71", result);
         }
 
+        [Ignore]
         [TestMethod]
         public void Puzzle2()
         {
@@ -52,17 +53,7 @@ namespace AdventOfCodeTests
             var result = AdventOfCode.Day16.Puzzle2(input_puzzle);
 
             // Assert
-            Assert.AreEqual($"{input_puzzle}_Puzzle2", result);
-        }
-
-        [TestMethod]
-        public void Puzzle2_Example()
-        {
-            // Act
-            var result = AdventOfCode.Day16.Puzzle2(input_example2);
-
-            // Assert
-            Assert.AreEqual($"{input_example2}_Puzzle2", result);
+            Assert.AreEqual("1185230240279", result); // Too low
         }
     }
 }
