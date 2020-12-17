@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 
 namespace AdventOfCode
 {
@@ -80,9 +79,9 @@ namespace AdventOfCode
 
             private void TouchNeighbours((int x, int y, int z) cube)
             {
-                foreach (var offset in Offsets)
+                foreach (var (x, y, z) in Offsets)
                 {
-                    var pos = (cube.x + offset.x, cube.y + offset.y, cube.z + offset.z);
+                    var pos = (cube.x + x, cube.y + y, cube.z + z);
                     if (Neightbours.ContainsKey(pos))
                     {
                         Neightbours[pos]++;
@@ -166,9 +165,9 @@ namespace AdventOfCode
 
             private void TouchNeighbours((int x, int y, int z, int w) cube)
             {
-                foreach (var offset in Offsets)
+                foreach (var (x, y, z, w) in Offsets)
                 {
-                    var pos = (cube.x + offset.x, cube.y + offset.y, cube.z + offset.z, cube.w + offset.w);
+                    var pos = (cube.x + x, cube.y + y, cube.z + z, cube.w + w);
                     if (Neightbours.ContainsKey(pos))
                     {
                         Neightbours[pos]++;

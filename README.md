@@ -35,8 +35,8 @@
 |                                | Puzzle2 |                       3s |                   2s  | 
 | [Day16](AdventOfCode/Day16.cs) | Puzzle1 |                      1ms |                       |
 |                                | Puzzle2 |                      WIP |                       | 
-| [Day17](AdventOfCode/Day17.cs) | Puzzle1 |                      9ms |                       |
-|                                | Puzzle2 |                     64ms |                       | 
+| [Day17](AdventOfCode/Day17.cs) | Puzzle1 |                      9ms |                   1ms |
+|                                | Puzzle2 |                     64ms |                  28ms | 
 <!-- 
 -->
 
