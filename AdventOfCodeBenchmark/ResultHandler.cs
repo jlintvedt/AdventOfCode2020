@@ -30,22 +30,19 @@ namespace AdventOfCodeBenchmark
                 throw new Exception("Critical Error");
             }
 
-            if (summary.BenchmarksCases.Length != 2)
-            {
-                throw new InvalidDataException("Only support parsing for exactly 2 bechmark cases");
-            }
-
             var day = summary.BenchmarksCases.First().DisplayInfo.Substring(3, 2);
 
             var dailyResults = this.results.Days.Where(x => x.Day == day).FirstOrDefault();
 
             if (dailyResults == null)
             {
-                throw new ArgumentException($"Day[{day}] not defined in {ResultFilename}");
+                throw new ArgumentException($"Day [{day}] not defined in {ResultFilename}");
             }
 
-            UpdatePuzzleValue(dailyResults, summary.Reports.First());
-            UpdatePuzzleValue(dailyResults, summary.Reports.Skip(1).First());
+            foreach (var report in summary.Reports)
+            {
+                UpdatePuzzleValue(dailyResults, report);
+            }
 
             if (writeToFile)
             {
@@ -67,7 +64,7 @@ namespace AdventOfCodeBenchmark
         public void UpdateResultsInReadme()
         {
             string tableStart = "<!--ResultTableStart-->";
-            string tableEnd = "<!--ResultTableEnds-->";
+            string tableEnd = "<!--ResultTableEnd-->";
 
             var markdownTable = ToMarkdownTable.Convert(results);
 
@@ -90,6 +87,12 @@ namespace AdventOfCodeBenchmark
 
         private void UpdatePuzzleValue(Results.DailyResult result, BenchmarkReport report)
         {
+            if (report.BenchmarkCase.Descriptor.WorkloadMethodDisplayInfo.Length != 6)
+            {
+                Console.WriteLine($"Only supports the default benchmarks with names using format [Dxx_Px], skipping writing {report.BenchmarkCase.Descriptor.WorkloadMethodDisplayInfo} to result file");
+                return;
+            }
+
             var puzzle = report.BenchmarkCase.Descriptor.WorkloadMethodDisplayInfo.ElementAt(5);
 
             var elapsed = FormatTimeValue(report.ResultStatistics.Mean);

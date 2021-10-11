@@ -10,16 +10,16 @@ namespace AdventOfCodeBenchmark
     {
         static void Main(string[] args)
         {
+            var resultHandler = new ResultHandler();
             var config = ManualConfig.CreateEmpty()
                 .AddColumnProvider(DefaultColumnProviders.Instance)
                 .AddLogger(ConsoleLogger.Default)
                 .AddExporter(MarkdownExporter.GitHub);
 
-            //var summary = BenchmarkRunner.Run<Day03Benchmark>(config);
+            var summary = BenchmarkRunner.Run<Day17Benchmark>(config);
+            resultHandler.UpdateBenchmark(summary, writeToFile: true);
 
-            var resultHandler = new ResultHandler();
-            //resultHandler.UpdateBenchmark(summary, writeToFile: true);
-            //resultHandler.UpdateResultsInReadme();
+            resultHandler.UpdateResultsInReadme();
         }
     }
 }
