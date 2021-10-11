@@ -1,6 +1,7 @@
 # AdventOfCode2020
 
 ## Runtimes
+<!--ResultTableStart-->
 |                                |         | Test @3.8GHz<sup>1</sup> | Benchmark<sup>2</sup> |
 |--------------------------------|---------|-------------------------:|----------------------:|
 | [Day01](AdventOfCode/Day01.cs) | Puzzle1 |                     <1ms |                  12µs |
@@ -37,8 +38,7 @@
 |                                | Puzzle2 |                      WIP |                       | 
 | [Day17](AdventOfCode/Day17.cs) | Puzzle1 |                      9ms |                   1ms |
 |                                | Puzzle2 |                     64ms |                  28ms | 
-<!-- 
--->
+<!--ResultTableEnd-->
 
 
 1) Desktop AMD Ryzen 9 3900X @3.8/4.6GHz. Visual Studio Test Explorer

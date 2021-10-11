@@ -1,0 +1,187 @@
+{
+  "CoreClockSpeed": "3.8GHz",
+  "Days": [
+    {
+      "Day": "01",
+      "Puzzle1_TestTime": "<1ms",
+      "Puzzle2_TestTime": "<1ms",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "02",
+      "Puzzle1_TestTime": "<1ms",
+      "Puzzle2_TestTime": "<1ms",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "03",
+      "Puzzle1_TestTime": "<1ms",
+      "Puzzle2_TestTime": "<1ms",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "04",
+      "Puzzle1_TestTime": "<1ms",
+      "Puzzle2_TestTime": "<1ms",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "05",
+      "Puzzle1_TestTime": "<1ms",
+      "Puzzle2_TestTime": "<1ms",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "06",
+      "Puzzle1_TestTime": "1ms",
+      "Puzzle2_TestTime": "1ms",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "07",
+      "Puzzle1_TestTime": "1ms",
+      "Puzzle2_TestTime": "1ms",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "08",
+      "Puzzle1_TestTime": "1ms",
+      "Puzzle2_TestTime": "1ms",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "09",
+      "Puzzle1_TestTime": "<1ms",
+      "Puzzle2_TestTime": "<1ms",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "10",
+      "Puzzle1_TestTime": "<1ms",
+      "Puzzle2_TestTime": "<1ms",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "11",
+      "Puzzle1_TestTime": "72ms",
+      "Puzzle2_TestTime": "125ms",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "12",
+      "Puzzle1_TestTime": "<1ms",
+      "Puzzle2_TestTime": "<1ms",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "13",
+      "Puzzle1_TestTime": "<1ms",
+      "Puzzle2_TestTime": "<1ms",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "14",
+      "Puzzle1_TestTime": "1ms",
+      "Puzzle2_TestTime": "9ms",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "15",
+      "Puzzle1_TestTime": "<1ms",
+      "Puzzle2_TestTime": "2.5s",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "16",
+      "Puzzle1_TestTime": "1ms",
+      "Puzzle2_TestTime": "",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "17",
+      "Puzzle1_TestTime": "9ms",
+      "Puzzle2_TestTime": "64ms",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "18",
+      "Puzzle1_TestTime": "",
+      "Puzzle2_TestTime": "",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "19",
+      "Puzzle1_TestTime": "",
+      "Puzzle2_TestTime": "",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "20",
+      "Puzzle1_TestTime": "",
+      "Puzzle2_TestTime": "",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "21",
+      "Puzzle1_TestTime": "",
+      "Puzzle2_TestTime": "",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "22",
+      "Puzzle1_TestTime": "",
+      "Puzzle2_TestTime": "",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "22",
+      "Puzzle1_TestTime": "",
+      "Puzzle2_TestTime": "",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "23",
+      "Puzzle1_TestTime": "",
+      "Puzzle2_TestTime": "",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "24",
+      "Puzzle1_TestTime": "",
+      "Puzzle2_TestTime": "",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    },
+    {
+      "Day": "25",
+      "Puzzle1_TestTime": "",
+      "Puzzle2_TestTime": "",
+      "Puzzle1_BenchmarkTime": "",
+      "Puzzle2_BenchmarkTime": ""
+    }
+  ]
+}
