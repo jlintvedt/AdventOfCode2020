@@ -452,7 +452,131 @@ namespace AdventOfCodeTests.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Day09_Puzzle.
+        ///   Looks up a localized string similar to 23
+        ///3
+        ///36
+        ///14
+        ///50
+        ///8
+        ///2
+        ///44
+        ///30
+        ///37
+        ///20
+        ///5
+        ///34
+        ///41
+        ///31
+        ///39
+        ///28
+        ///24
+        ///49
+        ///42
+        ///22
+        ///4
+        ///45
+        ///46
+        ///32
+        ///6
+        ///35
+        ///7
+        ///26
+        ///15
+        ///21
+        ///8
+        ///9
+        ///12
+        ///25
+        ///10
+        ///11
+        ///13
+        ///14
+        ///16
+        ///17
+        ///57
+        ///18
+        ///64
+        ///19
+        ///20
+        ///22
+        ///33
+        ///27
+        ///23
+        ///24
+        ///28
+        ///29
+        ///30
+        ///38
+        ///31
+        ///37
+        ///35
+        ///21
+        ///26
+        ///44
+        ///25
+        ///32
+        ///34
+        ///36
+        ///69
+        ///40
+        ///51
+        ///39
+        ///43
+        ///41
+        ///45
+        ///46
+        ///63
+        ///49
+        ///54
+        ///47
+        ///66
+        ///64
+        ///55
+        ///52
+        ///65
+        ///53
+        ///57
+        ///59
+        ///83
+        ///61
+        ///92
+        ///70
+        ///97
+        ///79
+        ///80
+        ///82
+        ///84
+        ///86
+        ///87
+        ///91
+        ///93
+        ///96
+        ///101
+        ///99
+        ///148
+        ///105
+        ///107
+        ///109
+        ///110
+        ///112
+        ///114
+        ///116
+        ///166
+        ///204
+        ///191
+        ///196
+        ///149
+        ///159
+        ///161
+        ///198
+        ///240
+        ///170
+        ///173
+        ///178
+        ///190
+        ///219
+        ///314
+        ///2 [rest of string was truncated]&quot;;.
         /// </summary>
         public static string D09_Puzzle {
             get {
@@ -461,7 +585,100 @@ namespace AdventOfCodeTests.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Day10_Puzzle.
+        ///   Looks up a localized string similar to 26
+        ///97
+        ///31
+        ///7
+        ///2
+        ///10
+        ///46
+        ///38
+        ///112
+        ///54
+        ///30
+        ///93
+        ///18
+        ///111
+        ///29
+        ///75
+        ///139
+        ///23
+        ///132
+        ///85
+        ///78
+        ///99
+        ///8
+        ///113
+        ///87
+        ///57
+        ///133
+        ///41
+        ///104
+        ///98
+        ///58
+        ///90
+        ///13
+        ///91
+        ///20
+        ///68
+        ///103
+        ///127
+        ///105
+        ///114
+        ///138
+        ///126
+        ///67
+        ///32
+        ///145
+        ///115
+        ///16
+        ///141
+        ///1
+        ///73
+        ///45
+        ///119
+        ///51
+        ///40
+        ///35
+        ///150
+        ///118
+        ///53
+        ///80
+        ///79
+        ///65
+        ///135
+        ///74
+        ///47
+        ///128
+        ///64
+        ///17
+        ///4
+        ///84
+        ///83
+        ///147
+        ///142
+        ///146
+        ///9
+        ///125
+        ///94
+        ///140
+        ///131
+        ///134
+        ///92
+        ///66
+        ///122
+        ///19
+        ///86
+        ///50
+        ///52
+        ///108
+        ///100
+        ///71
+        ///61
+        ///44
+        ///39
+        ///3
+        ///72.
         /// </summary>
         public static string D10_Puzzle {
             get {
@@ -470,7 +687,12 @@ namespace AdventOfCodeTests.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Day11_Puzzle.
+        ///   Looks up a localized string similar to LLLLLLLLLL.LLLL.LLLLLLL.LLLLL.LLLLLLLLLLLLLLLLLLLLLL.LL.LLLLLLLLLLL.LLLLLL.LL.LLLL.LLLLLL.LLLLLLL
+        ///LL.LLLLLLL.LLLLLLLLLLLL.LLLLL.LLLLLLLL.LLLLLLLLL.LLLLLL.LLLLLLLL.LLLLLLLLL.LL.LLLL.LLLLLL.LLLLLLL
+        ///LLLLLL.LLLLLLLLLLLLLLLL.LLL.L.LLLLLLLL.LLLL.LLLL.LLLLLL.LLLLLLLLLLLLLLLLLLLLLLLLLL.LLLL.L.LLLLLLL
+        ///LLLLLLLLLL.LLLL.LLLLLLLLLLLLL.LLLLLLLL.LLLLLLLLL.LLLLLLLLLLLLLLL.LLLLLLLLLLLLLLLLL.LLLLLLLLLLLLLL
+        ///LLLLLLLLLLLLLLL.LLLLLLL.LLLLL.LLLLLL.L.LLLLLLLLL.LLLLLL.LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL.LLLLLLL
+        ///LLLLLLLLLL.LLLLLL [rest of string was truncated]&quot;;.
         /// </summary>
         public static string D11_Puzzle {
             get {
@@ -479,7 +701,119 @@ namespace AdventOfCodeTests.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Day12_Puzzle.
+        ///   Looks up a localized string similar to W1
+        ///L90
+        ///F26
+        ///S3
+        ///W2
+        ///N5
+        ///L180
+        ///S4
+        ///F41
+        ///W1
+        ///F48
+        ///W3
+        ///F44
+        ///F63
+        ///W5
+        ///N3
+        ///E5
+        ///F7
+        ///R180
+        ///W1
+        ///N3
+        ///W3
+        ///R180
+        ///F38
+        ///N1
+        ///E3
+        ///L90
+        ///F49
+        ///S5
+        ///F11
+        ///E1
+        ///R90
+        ///W3
+        ///N4
+        ///E3
+        ///R180
+        ///W5
+        ///F93
+        ///S1
+        ///F67
+        ///L180
+        ///W3
+        ///S5
+        ///N3
+        ///L180
+        ///E1
+        ///N2
+        ///F90
+        ///S3
+        ///W3
+        ///N3
+        ///E1
+        ///F77
+        ///W3
+        ///N3
+        ///L180
+        ///E2
+        ///F25
+        ///N1
+        ///W1
+        ///S1
+        ///E5
+        ///S4
+        ///R180
+        ///W1
+        ///F13
+        ///L90
+        ///W4
+        ///S5
+        ///F13
+        ///N2
+        ///R90
+        ///F89
+        ///R90
+        ///W3
+        ///L90
+        ///W5
+        ///N5
+        ///E4
+        ///S4
+        ///F26
+        ///N1
+        ///R270
+        ///N5
+        ///E5
+        ///L180
+        ///R180
+        ///W4
+        ///R90
+        ///W5
+        ///F49
+        ///S2
+        ///F53
+        ///W5
+        ///L180
+        ///F54
+        ///L90
+        ///N3
+        ///F3
+        ///W5
+        ///R180
+        ///S4
+        ///L90
+        ///F49
+        ///W4
+        ///S5
+        ///F73
+        ///L270
+        ///W1
+        ///S4
+        ///F46
+        ///S4
+        ///W2        /// [rest of string was truncated]&quot;;.
         /// </summary>
         public static string D12_Puzzle {
             get {
@@ -488,7 +822,8 @@ namespace AdventOfCodeTests.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Day13_Puzzle.
+        ///   Looks up a localized string similar to 1000417
+        ///23,x,x,x,x,x,x,x,x,x,x,x,x,41,x,x,x,37,x,x,x,x,x,479,x,x,x,x,x,x,x,x,x,x,x,x,13,x,x,x,17,x,x,x,x,x,x,x,x,x,x,x,29,x,373,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,19.
         /// </summary>
         public static string D13_Puzzle {
             get {
@@ -497,7 +832,27 @@ namespace AdventOfCodeTests.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Day14_Puzzle.
+        ///   Looks up a localized string similar to mask = X00X0X0110010001010X0000000010001111
+        ///mem[36604] = 2508973
+        ///mem[14290] = 80919
+        ///mem[6865] = 15237
+        ///mem[45983] = 393572789
+        ///mask = X101001X0XX00111000110X0010000110110
+        ///mem[300] = 253232
+        ///mem[5315] = 56368
+        ///mem[64425] = 18227
+        ///mem[20919] = 4682858
+        ///mem[39194] = 54595
+        ///mem[32891] = 32798017
+        ///mask = X1X00101XX00000111X11X0000100000010X
+        ///mem[22572] = 2370
+        ///mem[61212] = 13199
+        ///mem[15537] = 15245
+        ///mem[29581] = 9182
+        ///mem[38437] = 15367
+        ///mem[62023] = 300695
+        ///mem[63267] = 7104850
+        ///mask = 0X0000X0X000001X00011 [rest of string was truncated]&quot;;.
         /// </summary>
         public static string D14_Puzzle {
             get {
@@ -506,7 +861,7 @@ namespace AdventOfCodeTests.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Day15_Puzzle.
+        ///   Looks up a localized string similar to 0,3,1,6,7,5.
         /// </summary>
         public static string D15_Puzzle {
             get {
@@ -515,7 +870,22 @@ namespace AdventOfCodeTests.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Day16_Puzzle.
+        ///   Looks up a localized string similar to departure location: 31-538 or 546-960
+        ///departure station: 39-660 or 673-960
+        ///departure platform: 35-731 or 745-968
+        ///departure track: 43-179 or 185-953
+        ///departure date: 29-250 or 263-949
+        ///departure time: 43-903 or 928-954
+        ///arrival location: 46-372 or 384-968
+        ///arrival station: 36-215 or 225-950
+        ///arrival platform: 25-631 or 655-950
+        ///arrival track: 26-768 or 781-962
+        ///class: 29-462 or 478-974
+        ///duration: 34-441 or 455-963
+        ///price: 39-683 or 693-956
+        ///route: 36-342 or 348-971
+        ///row: 37-501 or 520-963
+        ///seat: 46-356 or [rest of string was truncated]&quot;;.
         /// </summary>
         public static string D16_Puzzle {
             get {
@@ -524,11 +894,45 @@ namespace AdventOfCodeTests.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Day17_Puzzle.
+        ///   Looks up a localized string similar to #......#
+        ///##.#..#.
+        ///#.#.###.
+        ///.##.....
+        ///.##.#...
+        ///##.#....
+        ///#####.#.
+        ///##.#.###.
         /// </summary>
         public static string D17_Puzzle {
             get {
                 return ResourceManager.GetString("D17_Puzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day18_Puzzle.
+        /// </summary>
+        public static string D18_Puzzle {
+            get {
+                return ResourceManager.GetString("D18_Puzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day19_Puzzle.
+        /// </summary>
+        public static string D19_Puzzle {
+            get {
+                return ResourceManager.GetString("D19_Puzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day20_Puzzle.
+        /// </summary>
+        public static string D20_Puzzle {
+            get {
+                return ResourceManager.GetString("D20_Puzzle", resourceCulture);
             }
         }
     }

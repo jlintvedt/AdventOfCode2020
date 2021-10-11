@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace AdventOfCodeTests
 {
     [TestClass]
-    public class Day00Tests
+    public class Day20Tests
     {
         private string input_puzzle;
         private string input_example1;
@@ -13,7 +13,7 @@ namespace AdventOfCodeTests
         [TestInitialize]
         public void LoadInput()
         {
-            string day = "00";
+            string day = "20";
             input_puzzle = Resources.Input.ResourceManager.GetObject($"D{day}_Puzzle").ToString();
             input_example1 = string.Format("example{0}1", Environment.NewLine);
             input_example2 = string.Format("example{0}2", Environment.NewLine);
@@ -29,7 +29,7 @@ namespace AdventOfCodeTests
         public void Puzzle1()
         {
             // Act
-            var result = AdventOfCode.Day00.Puzzle1(input_puzzle);
+            var result = AdventOfCode.Day20.Puzzle1(input_puzzle);
 
             // Assert
             Assert.AreEqual($"{input_puzzle}_Puzzle1", result);
@@ -39,7 +39,7 @@ namespace AdventOfCodeTests
         public void Example_Puzzle1()
         {
             // Act
-            var result = AdventOfCode.Day00.Puzzle1(input_example1);
+            var result = AdventOfCode.Day20.Puzzle1(input_example1);
 
             // Assert
             Assert.AreEqual($"{input_example1}_Puzzle1", result);
@@ -49,7 +49,7 @@ namespace AdventOfCodeTests
         public void Puzzle2()
         {
             // Act
-            var result = AdventOfCode.Day00.Puzzle2(input_puzzle);
+            var result = AdventOfCode.Day20.Puzzle2(input_puzzle);
 
             // Assert
             Assert.AreEqual($"{input_puzzle}_Puzzle2", result);
@@ -59,7 +59,7 @@ namespace AdventOfCodeTests
         public void Example_Puzzle2()
         {
             // Act
-            var result = AdventOfCode.Day00.Puzzle2(input_example2);
+            var result = AdventOfCode.Day20.Puzzle2(input_example2);
 
             // Assert
             Assert.AreEqual($"{input_example2}_Puzzle2", result);

@@ -178,4 +178,13 @@
   <data name="D17_Puzzle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>D17_Puzzle.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="D18_Puzzle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>D18_Puzzle.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="D19_Puzzle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>D19_Puzzle.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="D20_Puzzle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>D20_Puzzle.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
 </root>
