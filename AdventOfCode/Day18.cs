@@ -22,6 +22,7 @@ namespace AdventOfCode
                 Equation = ParseEquationRec(inputEquation, ref index);
             }
 
+            #region Parse
             private Element ParseEquationRec(char[] input, ref int index)
             {
                 Element current = Element.NewElement(GetNextNonWhitespaceChar(input, ref index));
@@ -53,7 +54,9 @@ namespace AdventOfCode
                 
                 return c;
             }
+            #endregion
 
+            #region Solve
             public long Solve()
             {
                 SolveEquation(Equation);
@@ -74,7 +77,9 @@ namespace AdventOfCode
                         equation.SubEquation.Remove(currentNode.Next);
                         equation.SubEquation.Remove(currentNode.Next);
                     }
-                } else
+                } 
+                // Puzzle 2
+                else
                 {
                     // Perform add
                     currentNode = GetFirstNode(equation.SubEquation);
@@ -106,6 +111,12 @@ namespace AdventOfCode
                 equation.SetNumber(currentNode.Value.Value);
             }
 
+            /// <summary>
+            /// Performns the next operation on the current node's value and the next number node's value.
+            /// </summary>
+            /// <param name="currentNode">The first number node of the operation. The result is stored in this node.</param>
+            /// <param name="skipMultiply">Indicates if multiplication operations should be skipped.</param>
+            /// <returns>Indicates if the operation was performed.</returns>
             private bool PerformOperation(LinkedListNode<Element> currentNode, bool skipMultiply=false)
             {
                 var operation = GetNextOperation(currentNode);
@@ -159,7 +170,9 @@ namespace AdventOfCode
 
                 return false;
             }
+            #endregion
 
+            #region Element
             private enum Type {
                 Number,
                 Add,
@@ -222,6 +235,7 @@ namespace AdventOfCode
                     };
                 }
             }
+            #endregion
         }
 
         // == == == == == Puzzle 1 == == == == ==
