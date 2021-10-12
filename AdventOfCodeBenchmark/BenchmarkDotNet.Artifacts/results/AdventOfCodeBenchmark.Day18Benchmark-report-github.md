@@ -10,4 +10,5 @@ AMD Ryzen 9 3900X, 1 CPU, 24 logical and 12 physical cores
 ```
 | Method |     N |     Mean |     Error |    StdDev |
 |------- |------ |---------:|----------:|----------:|
-| D18_P1 | 10000 | 1.043 ms | 0.0085 ms | 0.0075 ms |
+| D18_P1 | 10000 | 1.045 ms | 0.0073 ms | 0.0061 ms |
+| D18_P2 | 10000 | 1.090 ms | 0.0061 ms | 0.0051 ms |

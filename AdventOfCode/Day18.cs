@@ -11,11 +11,13 @@ namespace AdventOfCode
         public class OperationOrder
         {
             Element Equation;
+            bool AddBeforeMultiply;
 
-            public OperationOrder(string input)
+            public OperationOrder(string input, bool addBeforeMultiply = false)
             {
                 var inputEquation = $"( {input} )".Split(' ');
                 var index = 0;
+                AddBeforeMultiply = addBeforeMultiply;
 
                 Equation = ParseEquationRec(inputEquation, ref index);
             }
@@ -50,18 +52,50 @@ namespace AdventOfCode
 
             private void SolveEquation(Element equation)
             {
-                var currentNode = GetFirstNode(equation.SubEquation);
-                do
+                LinkedListNode<Element> currentNode;
+                // Puzzle 1
+                if (!AddBeforeMultiply)
                 {
-                    PerformOperation(currentNode);
-                    equation.SubEquation.Remove(currentNode.Next);
-                    equation.SubEquation.Remove(currentNode.Next);
-                } while (HasMoreOperations(currentNode));
+                    currentNode = GetFirstNode(equation.SubEquation);
+                    while (HasMoreOperations(currentNode))
+                    {
+                        PerformOperation(currentNode);
+                        equation.SubEquation.Remove(currentNode.Next);
+                        equation.SubEquation.Remove(currentNode.Next);
+                    }
+                } else
+                {
+                    // Perform add
+                    currentNode = GetFirstNode(equation.SubEquation);
+                    while (HasMoreOperations(currentNode))
+                    {
+                        if (PerformOperation(currentNode, skipMultiply: true))
+                        {
+                            equation.SubEquation.Remove(currentNode.Next);
+                            equation.SubEquation.Remove(currentNode.Next);
+                        } 
+                        else
+                        {
+                            // If operation was not performed: skip to next operation
+                            currentNode = currentNode.Next.Next;
+                        }
+                    }
+                    
+                    // Perform multiply
+                    currentNode = GetFirstNode(equation.SubEquation);
+                    while (HasMoreOperations(currentNode))
+                    {
+                        PerformOperation(currentNode);
+                        equation.SubEquation.Remove(currentNode.Next);
+                        equation.SubEquation.Remove(currentNode.Next);
+                    } 
+                }
+                
 
                 equation.SetNumber(currentNode.Value.Value);
             }
 
-            private bool PerformOperation(LinkedListNode<Element> currentNode)
+            private bool PerformOperation(LinkedListNode<Element> currentNode, bool skipMultiply=false)
             {
                 var operation = GetNextOperation(currentNode);
                 var otherNode = GetNextValue(currentNode);
@@ -71,7 +105,7 @@ namespace AdventOfCode
                     currentNode.Value.Value += otherNode.Value;
                     return true;
                 }
-                else if (operation.Type == Type.Multiply)
+                else if (!skipMultiply && operation.Type == Type.Multiply)
                 {
                     currentNode.Value.Value *= otherNode.Value;
                     return true;
@@ -203,9 +237,16 @@ namespace AdventOfCode
             input = input.Replace("(", "( ");
             input = input.Replace(")", " )");
 
-            var oo = new OperationOrder(input);
+            var expressions = input.Split(Environment.NewLine);
 
-            return input + "_Puzzle2";
+            long sum = 0;
+            foreach (var exp in expressions)
+            {
+                var oo = new OperationOrder(exp, addBeforeMultiply: true);
+                sum += oo.Solve();
+            }
+
+            return sum.ToString();
         }
     }
 }

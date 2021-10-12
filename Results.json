@@ -123,9 +123,9 @@
     {
       "Day": "18",
       "Puzzle1_TestTime": "2ms",
-      "Puzzle2_TestTime": "",
+      "Puzzle2_TestTime": "2ms",
       "Puzzle1_BenchmarkTime": "1ms",
-      "Puzzle2_BenchmarkTime": ""
+      "Puzzle2_BenchmarkTime": "1ms"
     },
     {
       "Day": "19",
