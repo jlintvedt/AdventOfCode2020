@@ -10,21 +10,21 @@ namespace AdventOfCode
     {
         public class OperationOrder
         {
-            Element Equation;
-            bool AddBeforeMultiply;
+            readonly Element Equation;
+            readonly bool AddBeforeMultiply;
 
             public OperationOrder(string input, bool addBeforeMultiply = false)
             {
-                var inputEquation = $"( {input} )".Split(' ');
+                var inputEquation = $"({input})".ToCharArray();
                 var index = 0;
                 AddBeforeMultiply = addBeforeMultiply;
 
                 Equation = ParseEquationRec(inputEquation, ref index);
             }
 
-            private Element ParseEquationRec(string[] input, ref int index)
+            private Element ParseEquationRec(char[] input, ref int index)
             {
-                Element current = Element.NewElement(input[index++]);
+                Element current = Element.NewElement(GetNextNonWhitespaceChar(input, ref index));
 
                 if (current.Type == Type.Equation)
                 {
@@ -41,6 +41,17 @@ namespace AdventOfCode
                 }
 
                 return current;
+            }
+
+            private char GetNextNonWhitespaceChar(char[] input, ref int index)
+            {
+                char c;
+                do
+                {
+                    c = input[index++];
+                } while (c == ' ');
+                
+                return c;
             }
 
             public long Solve()
@@ -163,20 +174,20 @@ namespace AdventOfCode
                 public long Value;
                 public LinkedList<Element> SubEquation;
 
-                public static Element NewElement(string symbol)
+                public static Element NewElement(char symbol)
                 {
                     switch (symbol)
                     {
-                        case "+":
+                        case '+':
                             return new Element(Type.Add);
-                        case "*":
+                        case '*':
                             return new Element(Type.Multiply);
-                        case "(":
+                        case '(':
                             return new Element(Type.Equation);
-                        case ")":
+                        case ')':
                             return new Element(Type.EndEquation);
                         default:
-                            return new Element(Type.Number, int.Parse(symbol));
+                            return new Element(Type.Number, symbol - '0');
                     }
                 }
                 
@@ -216,16 +227,10 @@ namespace AdventOfCode
         // == == == == == Puzzle 1 == == == == ==
         public static string Puzzle1(string input)
         {
-            input = input.Replace("(", "( ");
-            input = input.Replace(")", " )");
-
-            var expressions = input.Split(Environment.NewLine);
-
             long sum = 0;
-            foreach (var exp in expressions)
+            foreach (var exp in input.Split(Environment.NewLine))
             {
-                var oo = new OperationOrder(exp);
-                sum += oo.Solve();
+                sum += (new OperationOrder(exp).Solve());
             }
 
             return sum.ToString();
@@ -234,16 +239,10 @@ namespace AdventOfCode
         // == == == == == Puzzle 2 == == == == ==
         public static string Puzzle2(string input)
         {
-            input = input.Replace("(", "( ");
-            input = input.Replace(")", " )");
-
-            var expressions = input.Split(Environment.NewLine);
-
             long sum = 0;
-            foreach (var exp in expressions)
+            foreach (var exp in input.Split(Environment.NewLine))
             {
-                var oo = new OperationOrder(exp, addBeforeMultiply: true);
-                sum += oo.Solve();
+                sum += (new OperationOrder(exp, addBeforeMultiply: true).Solve());
             }
 
             return sum.ToString();
