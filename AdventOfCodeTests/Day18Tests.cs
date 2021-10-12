@@ -68,11 +68,12 @@ namespace AdventOfCodeTests
         [TestMethod]
         public void Example_Puzzle2()
         {
-            // Act
-            var result = AdventOfCode.Day18.Puzzle2(input_example2);
-
-            // Assert
-            Assert.AreEqual($"{input_example2}_Puzzle2", result);
+            //Assert.AreEqual("231", AdventOfCode.Day18.Puzzle2(input_example1));
+            Assert.AreEqual("51", AdventOfCode.Day18.Puzzle2(input_example2));
+            Assert.AreEqual("46", AdventOfCode.Day18.Puzzle2(input_example3));
+            Assert.AreEqual("1445", AdventOfCode.Day18.Puzzle2(input_example4));
+            Assert.AreEqual("669060", AdventOfCode.Day18.Puzzle2(input_example5));
+            Assert.AreEqual("23340", AdventOfCode.Day18.Puzzle2(input_example6));
         }
     }
 }
