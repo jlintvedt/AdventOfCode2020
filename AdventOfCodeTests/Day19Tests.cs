@@ -15,7 +15,7 @@ namespace AdventOfCodeTests
         {
             string day = "19";
             input_puzzle = Resources.Input.ResourceManager.GetObject($"D{day}_Puzzle").ToString();
-            input_example1 = string.Format("example{0}1", Environment.NewLine);
+            input_example1 = string.Format(@"0: 4 1 5{0}1: 2 3 | 3 2{0}2: 4 4 | 5 5{0}3: 4 5 | 5 4{0}4: ""a""{0}5: ""b""{0}{0}ababbb{0}bababa{0}abbbab{0}aaabbb{0}aaaabbb", Environment.NewLine);
             input_example2 = string.Format("example{0}2", Environment.NewLine);
         }
 

@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 
 namespace AdventOfCodeTests
 {
@@ -248,6 +249,33 @@ namespace AdventOfCodeTests
             {
                 Assert.IsFalse(Common.StringIsIntInRange(val, min, max));
             }
+        }
+
+        [TestMethod]
+        public void SumOfHashsetContent_CorrectExecution()
+        {
+            // Arrange
+            var setA1 = new HashSet<int>() { 1, 2, 3 };
+            var setA2 = new HashSet<int>() { 10 };
+            var expectedA = new HashSet<int>() { 11, 12, 13 };
+            
+            var setB1 = new HashSet<int>() { 1, 2, 3 };
+            var setB2 = new HashSet<int>() { 10, 20 };
+            var expectedB = new HashSet<int>() { 11, 12, 13, 21, 22, 23 };
+
+            var setC1 = new HashSet<int>() { 1, 2, 3 };
+            var setC2 = new HashSet<int>() { 1, 2, 3 };
+            var expectedC = new HashSet<int>() { 2, 3, 4, 5, 6 };
+
+            // Act and Assert
+            var result = Common.SumOfHashsetContent(setA1, setA2);
+            Assert.IsTrue(expectedA.SetEquals(result));
+
+            result = Common.SumOfHashsetContent(setB1, setB2);
+            Assert.IsTrue(expectedB.SetEquals(result));
+
+            result = Common.SumOfHashsetContent(setC1, setC2);
+            Assert.IsTrue(expectedC.SetEquals(result));
         }
     }
 }

@@ -176,5 +176,21 @@ namespace AdventOfCode.Common
                 return false;
             }
         }
+
+        // == == == == == Processing == == == == ==
+        public static HashSet<int> SumOfHashsetContent(HashSet<int> setA, HashSet<int> setB)
+        {
+            var sum = new HashSet<int>();
+
+            foreach (var a in setA)
+            {
+                foreach (var b in setB)
+                {
+                    sum.Add(a + b);
+                }
+            }
+
+            return sum;
+        }
     }
 }
